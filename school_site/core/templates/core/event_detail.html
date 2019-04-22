@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+	<h1>Event Detail</h1>
+	<br>
+
+		<img src="{{ object.image.url }}" height=150>
+		<h2>{{ object.title }}</h1>
+		<p>On {{ object.date_posted|date:"d F Y  G:i" }}</p>
+		<p>{{ object.content|safe }}</p>
+
+{% endblock content %}

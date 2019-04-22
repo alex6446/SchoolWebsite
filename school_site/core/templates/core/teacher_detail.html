@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+	<b><h1>Teacher</h1></b>
+
+		<img src="{{ object.photo.url }}" height=150>
+		<h2>{{ object.name }}</h2>
+		<p>{{ object.rank }}</p>
+		<p>{{ object.description }}</p>
+
+	<br>
+
+{% endblock content %}
