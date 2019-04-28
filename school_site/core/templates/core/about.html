@@ -5,17 +5,25 @@
 	<br>
 	<strong><h1>Welcome</h1></strong>
 
-	<h2>{{ welcome.title }}</h1>
-	<img src="{{ welcome.image.url }}" height=150>
-	<p>{{ welcome.content|safe }}</p>
-	<br>
+	{% for welcome in about %}
+		{% if welcome.post_type == "welcome" %}
+			<h2>{{ welcome.title }}</h1>
+			<img src="{{ welcome.image.url }}" height=150>
+			<p>{{ welcome.content|safe }}</p>
+			<br>
+		{% endif %}
+	{% endfor %}
 
 	<strong><h1>History</h1></strong>
 
-	<h2>{{ history.title }}</h1>
-	<img src="{{ history.image.url }}" height=150>
-	<p>{{ history.content|safe }}</p>
-	<br>
+	{% for history in about %}
+		{% if history.post_type == "history" %}
+			<h2>{{ history.title }}</h1>
+			<img src="{{ history.image.url }}" height=150>
+			<p>{{ history.content|safe }}</p>
+			<br>
+		{% endif %}
+	{% endfor %}
 
 	<b><h1>Teachers</h1></b>
 

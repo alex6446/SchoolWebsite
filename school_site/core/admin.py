@@ -6,6 +6,7 @@ from .models import (
 	About,
 	Event,
 	Teacher,
+	Schedule,
 	)
 
 
@@ -27,4 +28,5 @@ admin.site.register(News, CustomAdmin)
 admin.site.register(About, CustomAdmin)
 admin.site.register(Event, CustomAdmin)
 admin.site.register(Teacher, CustomAdmin)
+admin.site.register(Schedule, CustomAdmin)
 

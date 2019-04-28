@@ -12,6 +12,13 @@ class News(models.Model):
 		return self.title
 
 class About(models.Model):
+	welcome = 'welcome'
+	history = 'history'
+	TYPES = (
+		(welcome, "welcome"),
+		(history, "history"),
+		)
+	post_type = models.CharField(max_length=25, choices=TYPES, default=welcome)
 	title = models.CharField(max_length=150)
 	image = models.ImageField(default='about_pics/default.png', upload_to='about_pics')
 	content = models.TextField()
@@ -36,3 +43,17 @@ class Teacher(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Schedule(models.Model):
+	general = 'general'
+	extra = 'extra'
+	TYPES = (
+		(general, "general"),
+		(extra, "extra"),
+		)
+	table_type = models.CharField(max_length=25, choices=TYPES, default=general)
+	table = models.FileField(upload_to="schedule_tables")
+
+	def __str__(self):
+		return self.table_type
+

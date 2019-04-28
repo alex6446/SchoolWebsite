@@ -5,18 +5,22 @@
 	<br>
 
 	<b><h1>Welcome</h1></b>
-	
-	<img src="{{ welcome.image.url }}" height=150>
-	<a href="{% url 'core-about' %}"><h2>{{ welcome.title }}</h2></a>
-	<p>{{ welcome.content|safe }}</p>
-	<br>
+
+	{% for welcome in about %}
+		{% if welcome.post_type == "welcome" %}
+			<img src="{{ welcome.image.url }}" height=150>
+			<a href="{% url 'core-about' %}"><h2>{{ welcome.title }}</h2></a>
+			<p>{{ welcome.content|safe|truncatewords:"35" }}</p>
+			<br>
+		{% endif %}
+	{% endfor %}
 
 	<b><h1>Events</h1></b>
 
 	{% for post in events %}
-		<a href="{% url 'event-detail' post.id %}"><h2>{{ post.title }}</h2></a>
+		<a href="{% url 'event-detail' post.id %}"><h3>{{ post.title }}</h3></a>
 		<p>On {{ post.date_posted|date:"d F Y  G:i" }}</p>
-		<p>{{ post.content|safe }}</p>
+		<p>{{ post.content|safe|truncatewords:"25" }}</p>
 	{% endfor %}
 	<br>
 
@@ -24,9 +28,9 @@
 
 	{% for post in news %}
 		<img src="{{ post.image.url }}" height=150>
-		<a href="{% url 'news-detail' post.id %}"><h2>{{ post.title }}</h2></a>
+		<a href="{% url 'news-detail' post.id %}"><h3>{{ post.title }}</h3></a>
 		<p>On {{ post.date_posted|date:"d F Y" }}</p>
-		<p>{{ post.content|safe }}</p>
+		<p>{{ post.content|safe|truncatewords:"35" }}</p>
 	{% endfor %}
 
 {% endblock content %}

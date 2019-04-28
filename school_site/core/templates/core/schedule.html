@@ -3,4 +3,25 @@
 
 	<h1>Schedule Page</h1>
 
+	<h3>Schedule</h3>
+	{% for schedule in tables %}
+		{% if schedule.table_type == 'general' %}
+			<!--<div class="table-bordered">-->
+				{{ schedule.table|safe }}
+			<!--</div>-->
+			<br>
+		{% endif %}
+	{% endfor %}
+
+	<h3>Extra Schedule</h3>
+	{% for schedule in tables %}
+		{% if schedule.table_type == 'extra' %}
+			<div class="table-bordered">
+				{{ schedule.table|safe }}
+			</div>
+			<br>
+		{% endif %}
+	{% endfor %}
+	
+
 {% endblock content %}

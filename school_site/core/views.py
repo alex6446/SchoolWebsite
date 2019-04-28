@@ -1,11 +1,14 @@
 from django.shortcuts import render
+import pandas
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
-from .models import About
-from .models import Event
-from .models import News
-from .models import Teacher
-
+from .models import (
+ 	About,
+	Event,
+	News,
+	Teacher,
+	Schedule,
+	)
 
 def home(request):
 	news_list = News.objects.all().order_by('-date_posted')
@@ -17,28 +20,35 @@ def home(request):
 	paginator = Paginator(event_list, 2)
 	pEvent = paginator.get_page(page)
 
-	AboutArticles = About.objects.all()
 	context = {
 		'events': pEvent,
-		'welcome': AboutArticles[0],
+		'about': About.objects.all(),
 		'news': pNews,
 		'title': 'Home'
 	}
 	return render(request, 'core/home.html', context)
 
 def about(request):
-	AboutArticles = About.objects.all()
 	context = {
 		'title': 'About',
-		'welcome': AboutArticles[0],
-		'history': AboutArticles[1],
+		'about': About.objects.all(),
 		'teachers': Teacher.objects.all(),
 	}
 	return render(request, 'core/about.html', context)
 
 def schedule(request):
+	ScheduleTables = Schedule.objects.all()
+	HtmlScheduleTables = []
+	for One in ScheduleTables:
+		table_xlsx = pandas.read_excel(One.table)
+		table_xlsx = table_xlsx.fillna('')
+		table_html = pandas.DataFrame.to_html(table_xlsx, index=False)
+		HtmlScheduleTables.append(One)
+		HtmlScheduleTables[-1].table = table_html
+		
 	context = {
 		'title': 'Schedule',
+		'tables': HtmlScheduleTables,
 	}
 	return render(request, 'core/schedule.html', context)
 

@@ -10,7 +10,7 @@
 			<img src="{{ post.image.url }}" height=150>
 			<a href="{% url 'event-detail' post.id %}"><h2>{{ post.title }}</h2></a>
 			<p>On {{ post.date_posted|date:"d F Y  G:i" }}</p>
-			<p>{{ post.content|safe }}</p>
+			<p>{{ post.content|safe|truncatewords:"35" }}</p>
 		{% endfor %}
 		<br>
 	{% endif %}
@@ -21,7 +21,7 @@
 		<img src="{{ post.image.url }}" height=150>
 		<a href="{% url 'news-detail' post.id %}"><h2>{{ post.title }}</h2></a>
 		<p>On {{ post.date_posted|date:"d F Y" }}</p>
-		<p>{{ post.content|safe }}</p>
+		<p>{{ post.content|safe|truncatewords:"35" }}</p>
 	{% endfor %}
 	<!--
 	{% if is_paginated %}
