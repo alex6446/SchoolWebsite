@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+	<h1>Gallery Page</h1>
+	<div class="row">
+	<div class="card-columns">
+		{% for folder in gallery %}
+			<div class="card bg-white shadow rounded-0 p-3 border-0">
+				<a href="{% url 'gallery-detail' folder.id %}">
+					<img class="card-img rounded-0" src="{{ folder.images.first.image.url }}">
+					<div class="card-text">
+						<b>{{ folder.title }}</b>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+	</div>
+
+
+ 
+{% endblock content %}

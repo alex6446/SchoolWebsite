@@ -27,10 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'fluent_contents.plugins.googledocsviewer',
+    'fluent_contents',
+    'django_wysiwyg',
     'filebrowser',
     'tinymce',
     'core.apps.CoreConfig',
@@ -159,8 +164,14 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     'visual': True,
     'fontsize_formats': "8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 28pt 32pt 36pt 42pt 48pt",
+    'forced_p_newlines': False,
+    'forced_br_newlines': True,
+    'forced_root_block': '',
     }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 
 """STATICFILES_DIRS= [
     os.path.join(BASE_DIR , "static")

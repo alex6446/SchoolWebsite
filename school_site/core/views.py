@@ -1,6 +1,8 @@
-from django.shortcuts import render
 import pandas
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 from .models import (
  	About,
@@ -8,7 +10,13 @@ from .models import (
 	News,
 	Teacher,
 	Schedule,
+	Contact,
+	Gallery,
+	GalleryImage,
 	)
+from .forms import ContactForm
+#from django.http import HttpResponse
+
 
 def home(request):
 	news_list = News.objects.all().order_by('-date_posted')
@@ -36,8 +44,16 @@ def about(request):
 	}
 	return render(request, 'core/about.html', context)
 
+def gallery(request):
+	gallery = Gallery.objects.all().order_by('-date_posted')
+	context = {
+		'title': 'Gallery',
+		'gallery': gallery,
+	}
+	return render(request, 'core/gallery.html', context)
+
 def schedule(request):
-	ScheduleTables = Schedule.objects.all()
+	"""ScheduleTables = Schedule.objects.all()
 	HtmlScheduleTables = []
 	for One in ScheduleTables:
 		table_xlsx = pandas.read_excel(One.table)
@@ -45,10 +61,11 @@ def schedule(request):
 		table_html = pandas.DataFrame.to_html(table_xlsx, index=False)
 		HtmlScheduleTables.append(One)
 		HtmlScheduleTables[-1].table = table_html
-		
+	"""	
 	context = {
 		'title': 'Schedule',
-		'tables': HtmlScheduleTables,
+		#'tables': HtmlScheduleTables,
+		'tables': Schedule.objects.all(),
 	}
 	return render(request, 'core/schedule.html', context)
 
@@ -91,8 +108,27 @@ class NewsListView(ListView):
 """
 
 def contacts(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			# send email
+			sender_name = form.cleaned_data['name']
+			sender_email = form.cleaned_data['email']
+
+			message = "{0} has sent you a message:\n\n{1}".format(sender_name, 
+				form.cleaned_data['message'])
+			send_mail('New Enquiry', message, sender_email, 
+				['alexeymedenitskiy@gmail.com'])
+
+			messages.success(request, f'Message sent!')
+			return redirect('core-contacts')
+	else:
+		form = ContactForm()
+
 	context = {
 		'title': 'Contacts',
+		'form': form,
+		'info': Contact.objects.all()
 	}
 	return render(request, 'core/contacts.html', context)
 
@@ -104,3 +140,6 @@ class event_detail(DetailView):
 
 class teacher_detail(DetailView):
 	model = Teacher
+
+class gallery_detail(DetailView):
+	model = Gallery

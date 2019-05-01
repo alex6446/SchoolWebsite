@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-	<h1>About Page</h1>
+	<h1 align="center">About Page</h1>
 	<br>
-	<strong><h1>Welcome</h1></strong>
+	<strong><h1 align="center">Welcome</h1></strong>
 
 	{% for welcome in about %}
 		{% if welcome.post_type == "welcome" %}
@@ -14,7 +14,7 @@
 		{% endif %}
 	{% endfor %}
 
-	<strong><h1>History</h1></strong>
+	<strong><h1 align="center">History</h1></strong>
 
 	{% for history in about %}
 		{% if history.post_type == "history" %}
@@ -25,13 +25,31 @@
 		{% endif %}
 	{% endfor %}
 
-	<b><h1>Teachers</h1></b>
+	<b><h1 align="center">Teachers</h1></b>
 
-	{% for teacher in teachers %}
-		<img src="{{ teacher.photo.url }}" height=150>
-		<a href="{% url 'teacher-detail' teacher.id %}"><h2>{{ teacher.name }}</h2></a>
-		<p>{{ teacher.rank }}</p>
-	{% endfor %}
+	<div class="row">
+	<div class="card-columns">
+		{% for teacher in teachers %}
+				<div class="card rounded-0 shadow border-0 bg-white">
+					<img class="card-img-top rounded-0" src="{{ teacher.photo.url }}">
+					<div class="card-body">
+						<a href="{% url 'teacher-detail' teacher.id %}"><h2>{{ teacher.name }}</h2></a>
+						<p>{{ teacher.rank }}</p>
+					</div>
+				</div>
+		{% endfor %}
+	</div>
+	</div>
+
 	<br>
+
+	<!-- 	<div class="col-md-3">
+				<div class="card">
+					<img class="card-img-top rounded" src="{{ folder.images.first.image.url }}">
+					<div class="card-body">
+						<span class="card-title">{{ folder.title }}</span>
+					</div>
+				</div>
+			</div> -->
 
 {% endblock content %}

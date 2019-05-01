@@ -7,7 +7,12 @@
 	{% for schedule in tables %}
 		{% if schedule.table_type == 'general' %}
 			<!--<div class="table-bordered">-->
-				{{ schedule.table|safe }}
+			<div class="row">
+				<a href="{{ schedule.table.url }}" data-toggle="lightbox" class="col-md-4">
+					<img src="{{ schedule.table.url }}" class="img-fluid rounded">
+				</a>
+			</div>
+				
 			<!--</div>-->
 			<br>
 		{% endif %}
@@ -16,8 +21,10 @@
 	<h3>Extra Schedule</h3>
 	{% for schedule in tables %}
 		{% if schedule.table_type == 'extra' %}
-			<div class="table-bordered">
-				{{ schedule.table|safe }}
+			<div class="row">
+				<a href="{{ schedule.table.url }}" data-toggle="lightbox" class="col-md-4">
+					<img src="{{ schedule.table.url }}" class="img-fluid rounded">
+				</a>
 			</div>
 			<br>
 		{% endif %}

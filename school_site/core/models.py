@@ -52,8 +52,25 @@ class Schedule(models.Model):
 		(extra, "extra"),
 		)
 	table_type = models.CharField(max_length=25, choices=TYPES, default=general)
-	table = models.FileField(upload_to="schedule_tables")
+	table = models.ImageField(upload_to="schedule_tables")
 
 	def __str__(self):
 		return self.table_type
 
+class Contact(models.Model):
+	title = models.CharField(max_length=150)
+	information = models.TextField()
+
+	def __str__(self):
+		return self.title
+
+class Gallery(models.Model):
+	title = models.CharField(max_length=300)
+	date_posted = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.title
+
+class GalleryImage(models.Model):
+	gallery = models.ForeignKey(Gallery, related_name='images', on_delete=models.SET_NULL, null=True)
+	image = models.ImageField()

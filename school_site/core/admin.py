@@ -7,6 +7,9 @@ from .models import (
 	Event,
 	Teacher,
 	Schedule,
+	Contact,
+	Gallery,
+	GalleryImage,
 	)
 
 
@@ -23,10 +26,19 @@ class CustomAdmin(admin.ModelAdmin):
 		)
 		print("done")"""
 
+class GalleryImageInline(admin.TabularInline):
+	model = GalleryImage
+	extra = 1
+
+class GalleryAdmin(admin.ModelAdmin):
+	inlines = [ GalleryImageInline, ]
+
 
 admin.site.register(News, CustomAdmin)
 admin.site.register(About, CustomAdmin)
 admin.site.register(Event, CustomAdmin)
 admin.site.register(Teacher, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
+admin.site.register(Contact, CustomAdmin)
+admin.site.register(Gallery, GalleryAdmin)
 
