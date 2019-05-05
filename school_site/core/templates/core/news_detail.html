@@ -3,6 +3,7 @@
 
 	<h1>News Detail</h1>
 	<br>
+	<div class="test">
 	<div class="row">
 		<a href="{{ object.image.url }}" data-toggle="lightbox" data-title="Image" class="col-md-4">
 			<img src="{{ object.image.url }}" class="img-fluid rounded">
@@ -10,8 +11,9 @@
 	</div>
 
 	<!--<img src="{{ object.image.url }}" height=150>-->
-	<h2>{{ object.title }}</h1>
+	<h2>{{ object.title }}</h2>
 	<p>On {{ object.date_posted|date:"d F Y" }}</p>
 	<p>{{ object.content|safe }}</p>
+	</div>
 
 {% endblock content %}

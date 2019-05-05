@@ -1,32 +1,70 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-	<h1>News Page</h1>
-	<br>
 	{% if not news.has_previous %}
-		<b><h1>Events</h1></b>
-		
-		{% for post in events %}
-			<img src="{{ post.image.url }}" height=150>
-			<a href="{% url 'event-detail' post.id %}"><h2>{{ post.title }}</h2></a>
-			<p>On {{ post.date_posted|date:"d F Y  G:i" }}</p>
-			<p>{{ post.content|safe|truncatewords:"35" }}</p>
-		{% endfor %}
+		<div class="container-fluid ">
+		<div class="row  justify-content-center">
+			<div class="col-md-12">
+				<h2 align="center" class="section-title">Оголошення</h2><br>
+			</div>
+			<div class="col-md-10 event-all">
+				<div class="row  p-3">
+				{% for post in events %}
+				<a href="{% url 'event-detail' post.id %}">
+					<div class="col-md-12">
+							<!-- <img src="{{ post.image.url }}" height=150> -->
+							<p class="event-all-date">{{ post.date_posted|date:"d F Y  G:i" }}</p>
+							<h3>{{ post.title }}</h3>
+							<p>{{ post.content|safe|truncatewords_html:"35" }}</p>
+						{% if not post == events.last %}
+							<hr class="light">
+						{% endif %}
+					</div>
+				</a>
+				{% endfor %}
+				</div>
+			</div>
+			</div>
+		</div>
 		<br>
 	{% endif %}
 	
-	<b><h1>News</h1></b>
 
-	{% for post in news %}
 
-	<div class="shadow p-1 mb-3 bg-white">
-		<img src="{{ post.image.url }}" height=150>
-		<a href="{% url 'news-detail' post.id %}"><h2>{{ post.title }}</h2></a>
-		<p>On {{ post.date_posted|date:"d F Y" }}</p>
-		<p>{{ post.content|safe|truncatewords:"35" }}</p>
+	<div class="container-fluid ">
+	<div class="row  justify-content-center">
+		{% if not news.has_previous %}
+			<div class="col-md-12">
+				<h2 align="center" class="section-title">Новини</h2><br>
+			</div>
+		{% else %}
+			<div class="col-md-12">
+				<br>
+			</div>
+		{% endif %}
+		<div class="col-md-10">
+			{% for post in news %}
+				<div class=" p-0 mb-3 bg-white news-preview">
+					<a href="{% url 'news-detail' post.id %}">
+					<div class="row no-gutters">
+						<div class="col-md-6">
+							<img src="{{ post.image.url }}" width=100%><br>
+						</div>
+						<div class="col-md-6">
+							<div class="p-4  news-content">
+								<p>{{ post.date_posted|date:"d F Y" }}</p>
+								<h3>{{ post.title }}</h3>	
+								<p>{{ post.content|safe|truncatewords_html:"35" }}</p>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
 
 	</div>
-	{% endfor %}
+	</div>
 	<!--
 	{% if is_paginated %}
 		<p>HELLLOOOOOOOOOOOO</p>
@@ -54,23 +92,24 @@
 -->
 	<br>
 	<br>
-	{% if news.has_previous %}
-		<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-		<a class="btn btn-outline-info mb-4" href="?page={{ news.has_previous_page_number }}">Previous</a>
-	{% endif %}
-
-	{% for num in news.paginator.page_range %}
-		{% if news.number == num %}
-			<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-		{% elif num > news.number|add:'-3' and num < news.number|add:'+3' %}
-			<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+	<div align="center">
+		{% if news.has_previous %}
+			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page=1">Перша</a>
+			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.has_previous_page_number }}">Попередня</a>
 		{% endif %}
-	{% endfor %}
 
-	{% if news.has_next %}
-		<a class="btn btn-outline-info mb-4" href="?page={{ news.next_page_number }}">Next</a>
-		<a class="btn btn-outline-info mb-4" href="?page={{ news.paginator.num_pages }}">Last</a>
-	{% endif %}
-	<br>
-	<br>
+		{% for num in news.paginator.page_range %}
+			{% if news.number == num %}
+				<a class="btn btn-info mb-4 rounded-0 btn-pag" href="?page={{ num }}">{{ num }}</a>
+			{% elif num > news.number|add:'-3' and num < news.number|add:'+3' %}
+				<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ num }}">{{ num }}</a>
+			{% endif %}
+		{% endfor %}
+
+		{% if news.has_next %}
+			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.next_page_number }}">Наступна</a>
+			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.paginator.num_pages }}">Остання</a>
+		{% endif %}
+	</div>
+
 {% endblock content %}

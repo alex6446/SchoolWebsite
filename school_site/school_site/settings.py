@@ -32,6 +32,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.sites',
     'fluent_contents.plugins.googledocsviewer',
     'fluent_contents',
@@ -170,6 +171,9 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 #EMAIL_HOST = 'localhost'
 #EMAIL_PORT = 1025
 

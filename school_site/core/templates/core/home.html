@@ -1,17 +1,14 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-	<h1 align="center">Home Page</h1>
-	<br>
-
-	
+	<br><br><br>
 	<div class="container-fluid ">
 	<div class="row justify-content-center no-gutters">
-		<div class="col-md-12">
+		<!-- <div class="col-md-12">
 			<h1 align="center">Welcome</h1>
-		</div>
+		</div> -->
 		<div class="col-md-9">
-			<div class="shadow mb-3 bg-white">
+			<div class=" mb-3 bg-white">
 				<div class="row no-gutters ">
 					<div class="col-md-6">
 						<div class="p-5">
@@ -20,7 +17,7 @@
 							{% if welcome.post_type == "welcome" %}
 								<img src="{{ welcome.image.url }}" width=100% ><br><br>
 								<h3>{{ welcome.title }}</h3>
-								<span class="welcome-preview"><p>{{ welcome.content|safe|truncatewords:"45" }}</p></span>
+								<span class="welcome-preview"><p>{{ welcome.content|safe|truncatewords_html:"45" }}</p></span>
 								<div class="grey-link">
 									<a href="{% url 'core-about' %}" class="welcome-preview"><u>Read more</u></a>
 								</div>
@@ -34,13 +31,13 @@
 						<div class="p-1">
 							<div class="row no-gutters">
 								<div class="col-md-12">
-									<b><h3>Events</h3></b>
+									<b><h3>Оголошення</h3></b>
 								</div>
 								{% for post in events %}
 									<div class="col-md-12 event-preview">
 										<span class="event-text"><p>{{ post.date_posted|date:"d F Y  G:i" }}</p></span>
 										{{ post.title }}
-										<span class="event-text"><p>{{ post.content|safe|truncatewords:"25" }}</p></span><p></p>
+										<span class="event-text"><p>{{ post.content|safe|truncatewords_html:"24" }}</p></span><p></p>
 										<a href="{% url 'event-detail' post.id %}" >
 											<button class="btn rounded-0 event-more-btn" >Read more</button>
 										</a>
@@ -75,23 +72,25 @@
 	<div class="container-fluid ">
 	<div class="row  justify-content-center">
 		<div class="col-md-12">
-			<h1 align="center">News</h1><br>
+			<h2 align="center" class="section-title">Новини</h2><br>
 		</div>
 		<div class="col-md-10">
 			{% for post in news %}
-				<div class="shadow p-0 mb-3 bg-white">
+				<div class=" p-0 mb-3 bg-white news-preview">
+					<a href="{% url 'news-detail' post.id %}">
 					<div class="row no-gutters">
 						<div class="col-md-6">
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
 						<div class="col-md-6">
-							<div class="p-3">
-								<a href="{% url 'news-detail' post.id %}"><h4>{{ post.title }}</h4></a>
-								<p>On {{ post.date_posted|date:"d F Y" }}</p>
+							<div class="p-4">
+								<p>{{ post.date_posted|date:"d F Y" }}</p>
+								<h3>{{ post.title }}</h3>	
 								<p>{{ post.content|safe|truncatewords:"35" }}</p>
 							</div>
 						</div>
 					</div>
+					</a>
 				</div>
 			{% endfor %}
 		</div>

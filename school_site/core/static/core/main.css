@@ -1,11 +1,54 @@
-/*@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
-
+/*@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');*/
+/*
 body{
 	font-family: 'Helvetica';
 }*/
 
+.test {
+	height: 100%;
+	min-height: 100%;
+}
+
+wrapper {
+	min-height: 100vh;
+}
+
 body {
 	background-color: #ececec;
+	height: 100%;
+	min-height: 100vh;
+	/*font-family: 'Poppins', sans-serif;*/
+}
+
+footer {
+	background-color: #343F64;
+	margin-top: 2rem;
+	padding: 1.2rem;
+	margin: none;
+	font-size: 11pt;
+}
+
+.footer-title {
+	color: #FFFFFF;
+}
+
+.footer-content {
+	color: #959CB2;
+}
+
+.footer-title a {
+	color: #FFFFFF;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+.navbar-bg {
+	background-color: #343F64;
+}
+
+.navbar button {
+	border: none;
+	outline: none;
 }
 
 a {
@@ -16,8 +59,20 @@ a {
 	outline: none;
 }
 
+.nav-link{
+	padding: 10px;
+	margin-right: 10px;
+}
+
 .row {
 	margin: 15px;
+}
+
+.section-title {
+	color: #343F64;
+	font-size: 22pt;
+	margin: 14px;
+	margin-top: 40px;
 }
 
 .thumbnail {
@@ -75,7 +130,7 @@ a {
 
 .event-preview {
 	font-size: 11pt !important;
-	margin-top: 1.1rem;
+	margin-top: 1.4rem;
 }
 
 .event-preview p {
@@ -121,9 +176,98 @@ a {
 	outline: none;
 }
 
+/*.news-preview{
+	border-right: 2px; 
+	border-color: #69718B;
+	border-right-style: solid;
+}*/
+
+.news-preview a {
+	color: #2F2E2E;
+	text-decoration: none;
+}
+
+.news-preview a:hover h3 {
+	color: #69718B;
+}
+
 .card {
 	background-color: #ececec; 
 }
+
+.event-all {
+	background-color: #FFFFFF;
+}
+
+.event-all a {
+	text-decoration: none;
+	color: #2F2E2E;
+	width: 100%;
+}
+
+.event-all a:hover h3 {
+	color: #69718B;
+}
+
+.event-all-date {
+	color: grey;
+}
+
+hr.light {
+	border-top: 1px solid #d3d3d3;
+}
+
+.contact-panel {
+	padding: 2rem;
+	font-size: 11pt;
+}
+
+.form-group input, textarea {
+	width: 100%;
+	padding: 0.2rem;
+	padding-left: 0.4rem;
+	margin-bottom: 0.5rem;
+	background-color: #FFFFFF;
+	color: #2F2E2E;
+	border: 1px;
+	border-color: #000000;
+	border-style: solid;
+}
+
+/*.form-group input:invalid {
+	border-color: blue;
+}
+
+.form-group textarea:invalid {
+	border-color: blue;
+}*/
+
+.form-group button {
+	background-color: #E9DB89;
+	color: #343F64;
+	margin-top: 0.6rem;
+	border: none;
+}
+
+.form-group button:hover {
+	background-color: #ece09a;
+	color: #343F64;
+}
+
+/*.event-all-preview hr{
+	height: 5px;
+}*/
+
+/*.event-all-preview {
+	padding: 0rem;
+	margin: 0.3rem;
+}*/
+
+/*.btn-pag {
+	outline-color: #343F64;
+	border-color: #343F64;
+	color: #343F64;
+}*/
 
 /* .button {
   background-color: #4CAF50;

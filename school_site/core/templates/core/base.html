@@ -31,12 +31,12 @@
 	{% endif %}
 </head>
 <body>
+<wrapper class="d-flex flex-column">	
 
 
 
 
-
-	<nav class="navbar navbar-expand-md navbar navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-md navbar navbar-dark navbar-bg">
 	  <a class="navbar-brand" href="{% url 'core-home' %}">ЗОШ №2</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -44,25 +44,25 @@
 	  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 	    <ul class="navbar-nav text-right">
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-home' %}">Home <span class="sr-only"></span></a>
+	        <a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-about' %}">About</a>
+	        <a class="nav-link" href="{% url 'core-about' %}">Про школу</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-gallery' %}">Gallery</a>
+	        <a class="nav-link" href="{% url 'core-gallery' %}">Галерея</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-schedule' %}">Schedule</a>
+	        <a class="nav-link" href="{% url 'core-schedule' %}">Розклад</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-students' %}">Students</a>
+	        <a class="nav-link" href="{% url 'core-students' %}">Учням</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-news' %}">News</a>
+	        <a class="nav-link" href="{% url 'core-news' %}">Новини</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-contacts' %}">Contacts</a>
+	        <a class="nav-link" href="{% url 'core-contacts' %}">Контакти</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="/admin">Admin</a>
@@ -105,7 +105,7 @@
 			</li>
 		</ul>
 	</nav>-->
-	<div class="container-fluid">
+	<div class="container-fluid flex-fill">
 		{% if messages %}
 			{% for message in messages %}
 				<div class="alert alert-{{ message.tags }}">
@@ -116,6 +116,33 @@
 		{% block content %}{% endblock %}
 	</div>
 
+	<footer>
+		<div class="row justify-content-center">
+		<div class="col-md-10">
+			<div class="container-fluid padding">
+			<div class="row text-center">
+				<div class="col-md-4 social">
+					<p class="footer-title">
+						<a href="#"><i class="fab fa-twitter"></i></a>
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i  class="fab fa-instagram"></i></a>
+					</p>
+					<p class="footer-content">&copy; 2019 Загальноосвітня школа I-III ступенів №2 <br> Сайт створив Меденицький Олексій</p>
+				</div  class="col-md-4">
+				<div class="col-md-4 social">
+					<p class="footer-title">Ми на зв'язку</p>
+					<p class="footer-content">Телефон: +7 (495) 000-00-00 <br> Email: info@mysite.ua</p>
+				</div>
+				<div class="col-md-4 social">
+					<p class="footer-title">Адреса</p>
+					<p class="footer-content">Проспект Миру, 1а, Чорноморськ, <br> 68001, Україна</p>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</footer>
+
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -124,7 +151,7 @@
 
     <script type="text/javascript" src="{% static 'core/image.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
-
-
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</wrapper>
 </body>
 </html>
