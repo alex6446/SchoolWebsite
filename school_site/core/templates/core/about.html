@@ -1,44 +1,74 @@
 {% extends 'core/base.html' %}
 {% block content %}
-
-	<h1 align="center">About Page</h1>
 	<br>
-	<strong><h1 align="center">Welcome</h1></strong>
 
-	{% for welcome in about %}
-		{% if welcome.post_type == "welcome" %}
-			<h2>{{ welcome.title }}</h1>
-			<img src="{{ welcome.image.url }}" height=150>
-			<p>{{ welcome.content|safe }}</p>
-			<br>
-		{% endif %}
-	{% endfor %}
+	<div class="row justify-content-center">
+		<div class="col-lg-11">
+			{% for welcome in about %}
+				{% if welcome.post_type == "welcome" %}
+				<div class="row mb-0">
+					<div class="col-md-12">
+						<h2 class="section-title" align="center">{{ welcome.title }}</h2>
+					</div>
+					{% if welcome.image %}
+						<div class="col-lg-6 p-3">							
+							<img src="{{ welcome.image.url }}" width="100%">
+						</div>
+						<div class="col-lg-6 p-1 about-welcome-text">
+							<p>{{ welcome.content|safe }}</p>
+						</div>
+					{% else %}
+						<div class="col-lg-12 p-1 about-welcome-text">
+							<p>{{ welcome.content|safe }}</p>
+						</div>
+					{% endif %}
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
 
-	<strong><h1 align="center">History</h1></strong>
-
-	{% for history in about %}
-		{% if history.post_type == "history" %}
-			<h2>{{ history.title }}</h1>
-			<img src="{{ history.image.url }}" height=150>
-			<p>{{ history.content|safe }}</p>
-			<br>
-		{% endif %}
-	{% endfor %}
-
-	<b><h1 align="center">Teachers</h1></b>
-
-	<div class="row">
-	<div class="card-columns">
-		{% for teacher in teachers %}
-				<div class="card rounded-0 shadow border-0 bg-white">
-					<img class="card-img-top rounded-0" src="{{ teacher.photo.url }}">
-					<div class="card-body">
-						<a href="{% url 'teacher-detail' teacher.id %}"><h2>{{ teacher.name }}</h2></a>
-						<p>{{ teacher.rank }}</p>
+	<div class="row justify-content-center">
+		<div class="col-lg-11">
+		{% for history in about %}
+			{% if history.post_type == "history" %}
+				<div class="row mt-0 mb-0">
+					<div class="col-lg-12">
+						<h2  class="section-title" align="center" >{{ history.title }}</h2>
+					</div>
+					<div class="col-lg-12 p-3">
+						{% if history.image %}
+							<img src="{{ history.image.url }}" width="100%" class="pb-4">
+						{% endif %}
+						<p>{{ history.content|safe }}</p>
 					</div>
 				</div>
+			{% endif %}
 		{% endfor %}
+		</div>
 	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-lg-12">
+			<h2 class="section-title" align="center">Наші вчителі</h2>
+		</div>
+		<div class="col-lg-11">
+			<div class="row p-1">
+				{% for teacher in teachers %}
+					<div class="teacher-preview col-lg-4 p-2">
+						<a href="{% url 'teacher-detail' teacher.id %}">
+							<div class="card rounded-0 border-0 bg-white">
+								<img class="card-img-top rounded-0" src="{{ teacher.photo.url }}">
+								<div class="card-body">
+									<h3>{{ teacher.name }}</h3>
+									<p>{{ teacher.rank }}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 
 	<br>

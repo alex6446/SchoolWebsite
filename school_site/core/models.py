@@ -20,7 +20,7 @@ class About(models.Model):
 		)
 	post_type = models.CharField(max_length=25, choices=TYPES, default=welcome)
 	title = models.CharField(max_length=150)
-	image = models.ImageField(default='about_pics/default.png', upload_to='about_pics')
+	image = models.ImageField(default=None, upload_to='about_pics', blank=True)
 	content = models.TextField()
 
 	def __str__(self):
@@ -43,6 +43,22 @@ class Teacher(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Timetable(models.Model):
+	general_summer = 'general_summer'
+	general_winter = 'general_winter'
+	extra = 'extra'
+	TYPES = (
+		(general_summer, "general_summer"),
+		(general_winter, "general_winter"),
+		(extra, "extra"),
+		)
+	title = models.CharField(max_length=150)
+	table_type = models.CharField(max_length=25, choices=TYPES, default=general_summer)
+	table = models.TextField()
+
+	def __str__(self):
+		return self.table_type
 
 class Schedule(models.Model):
 	general = 'general'

@@ -6,6 +6,7 @@ from .models import (
 	About,
 	Event,
 	Teacher,
+	Timetable,
 	Schedule,
 	Contact,
 	Gallery,
@@ -38,6 +39,7 @@ admin.site.register(News, CustomAdmin)
 admin.site.register(About, CustomAdmin)
 admin.site.register(Event, CustomAdmin)
 admin.site.register(Teacher, CustomAdmin)
+admin.site.register(Timetable, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
 admin.site.register(Contact, CustomAdmin)
 admin.site.register(Gallery, GalleryAdmin)

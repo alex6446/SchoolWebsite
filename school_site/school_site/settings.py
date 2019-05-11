@@ -170,7 +170,13 @@ TINYMCE_DEFAULT_CONFIG = {
     'forced_root_block': '',
     }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.net'
+EMAIL_HOST_USER = 'school2testing321@gmail.com'
+EMAIL_HOST_PASSWORD = 'testing321'
+EMAIL_PORT = 587
+# ACCOUNT_EMAIL_SUBJECT_PREFIX = 'school2'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

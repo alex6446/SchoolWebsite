@@ -17,6 +17,9 @@ body {
 	background-color: #ececec;
 	height: 100%;
 	min-height: 100vh;
+	/*background-image: url("zoh.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;*/
 	/*font-family: 'Poppins', sans-serif;*/
 }
 
@@ -68,6 +71,10 @@ a {
 	margin: 15px;
 }
 
+/*.content-margin {
+	margin-top: 40rem;
+}*/
+
 .section-title {
 	color: #343F64;
 	font-size: 22pt;
@@ -95,19 +102,37 @@ a {
 @media (min-width: 576px){
 	.card-columns {
     	column-count: 2;
-  }
+  	}
+  	.about-img-width-fix {
+  		width: 100%;
+  	}
+  	/*.content-margin {
+		margin-top: 15rem;
+	}*/
 }
 
 @media (min-width: 768px){
 	.card-columns {
     	column-count: 3;
-  }
+  	}
+  	.about-img-width-fix {
+  		width: 100%;
+  	}
+  	/*.content-margin {
+		margin-top: 40rem;
+	}*/
 }
 
 @media (min-width: 992px){
 	.card-columns {
     	column-count: 4;
-  }
+  	}
+  	.about-img-width-fix {
+  		width: 50%;
+  	}
+  /*	.content-margin {
+		margin-top: 40rem;
+	}*/
 }
 
 [class*="col-"] {
@@ -216,6 +241,23 @@ a {
 hr.light {
 	border-top: 1px solid #d3d3d3;
 }
+
+
+
+/*.about-welcome-text  {
+	font-size: 12pt;
+}*/
+
+.teacher-preview a {
+	text-decoration: none;
+	color: #2F2E2E;
+	text-align: center;
+}
+
+.teacher-preview a:hover h3 {
+	color: #69718B;
+}
+
 
 .contact-panel {
 	padding: 2rem;

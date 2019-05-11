@@ -4,11 +4,13 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
+from django.conf import settings
 from .models import (
  	About,
 	Event,
 	News,
 	Teacher,
+	Timetable,
 	Schedule,
 	Contact,
 	Gallery,
@@ -65,7 +67,8 @@ def schedule(request):
 	context = {
 		'title': 'Schedule',
 		#'tables': HtmlScheduleTables,
-		'tables': Schedule.objects.all(),
+		'lessons': Schedule.objects.all(),
+		'time': Timetable.objects.all(),
 	}
 	return render(request, 'core/schedule.html', context)
 
@@ -118,7 +121,7 @@ def contacts(request):
 			message = "{0} has sent you a message:\n\n{1}".format(sender_name, 
 				form.cleaned_data['message'])
 			send_mail('New Enquiry', message, sender_email, 
-				['alexeymedenitskiy@gmail.com'])
+				[settings.EMAIL_HOST_USER])
 
 			messages.success(request, f'Message sent!')
 			return redirect('core-contacts')
