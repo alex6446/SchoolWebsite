@@ -16,10 +16,22 @@
 						</div>
 						<div class="col-lg-6 p-1 about-welcome-text">
 							<p>{{ welcome.content|safe }}</p>
+							{% if welcome.about_files.all %}
+								<p><b>Файли</b></p>
+								{% for link in welcome.about_files.all %}
+									<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+								{% endfor %}
+							{% endif %}
 						</div>
 					{% else %}
 						<div class="col-lg-12 p-1 about-welcome-text">
 							<p>{{ welcome.content|safe }}</p>
+							{% if welcome.about_files.all %}
+								<p><b>Файли</b></p>
+								{% for link in welcome.about_files.all %}
+									<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+								{% endfor %}
+							{% endif %}
 						</div>
 					{% endif %}
 				</div>
@@ -41,6 +53,12 @@
 							<img src="{{ history.image.url }}" width="100%" class="pb-4">
 						{% endif %}
 						<p>{{ history.content|safe }}</p>
+						{% if history.about_files.all %}
+								<p><b>Файли</b></p>
+								{% for link in history.about_files.all %}
+									<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+								{% endfor %}
+							{% endif %}
 					</div>
 				</div>
 			{% endif %}

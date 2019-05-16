@@ -90,3 +90,24 @@ class Gallery(models.Model):
 class GalleryImage(models.Model):
 	gallery = models.ForeignKey(Gallery, related_name='images', on_delete=models.SET_NULL, null=True)
 	image = models.ImageField()
+
+class AttachedFileNews(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	news = models.ForeignKey(News, related_name='news_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300, default="Download")
+
+class AttachedFileAbout(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	about = models.ForeignKey(About, related_name='about_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300, default="Download")
+
+class AttachedFileEvent(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	event = models.ForeignKey(Event, related_name='event_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300, default="Download")
+
+class AttachedFileTeacher(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	teacher = models.ForeignKey(Teacher, related_name='teacher_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300, default="Download")
+

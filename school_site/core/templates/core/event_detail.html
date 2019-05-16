@@ -8,5 +8,11 @@
 		<h2>{{ object.title }}</h1>
 		<p>On {{ object.date_posted|date:"d F Y  G:i" }}</p>
 		<p>{{ object.content|safe }}</p>
+		{% if object.event_files.all %}
+		<p><b>Файли</b></p>
+		{% for link in object.event_files.all %}
+			<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+		{% endfor %}
+	{% endif %}
 
 {% endblock content %}

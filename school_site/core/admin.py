@@ -11,21 +11,17 @@ from .models import (
 	Contact,
 	Gallery,
 	GalleryImage,
+	AttachedFileNews,
+	AttachedFileAbout,
+	AttachedFileEvent,
+	AttachedFileTeacher,
 	)
 
 
 class CustomAdmin(admin.ModelAdmin):
-
 	formfield_overrides = {
 		models.TextField: {'widget': TinyMCE()},
 		}
-	
-	"""class Media:
-		js = (
-			'js/tinymce/tinymce.min.js', # tinymce js file
-			'js/tinymce/custom.js',       # project static folder
-		)
-		print("done")"""
 
 class GalleryImageInline(admin.TabularInline):
 	model = GalleryImage
@@ -34,11 +30,40 @@ class GalleryImageInline(admin.TabularInline):
 class GalleryAdmin(admin.ModelAdmin):
 	inlines = [ GalleryImageInline, ]
 
+class AttachedFileNewsInline(admin.TabularInline):
+	model = AttachedFileNews
+	extra = 1
 
-admin.site.register(News, CustomAdmin)
-admin.site.register(About, CustomAdmin)
-admin.site.register(Event, CustomAdmin)
-admin.site.register(Teacher, CustomAdmin)
+class AttachedFileNewsAdmin(CustomAdmin):
+	inlines = [ AttachedFileNewsInline, ]
+
+class AttachedFileAboutInline(admin.TabularInline):
+	model = AttachedFileAbout
+	extra = 1
+
+class AttachedFileAboutAdmin(CustomAdmin):
+	inlines = [ AttachedFileAboutInline, ]
+
+class AttachedFileEventInline(admin.TabularInline):
+	model = AttachedFileEvent
+	extra = 1
+
+class AttachedFileEventAdmin(CustomAdmin):
+	inlines = [ AttachedFileEventInline, ]
+
+class AttachedFileTeacherInline(admin.TabularInline):
+	model = AttachedFileTeacher
+	extra = 1
+
+class AttachedFileTeacherAdmin(CustomAdmin):
+	inlines = [ AttachedFileTeacherInline, ]
+
+
+
+admin.site.register(News, AttachedFileNewsAdmin)
+admin.site.register(About, AttachedFileAboutAdmin)
+admin.site.register(Event, AttachedFileEventAdmin)
+admin.site.register(Teacher, AttachedFileTeacherAdmin)
 admin.site.register(Timetable, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
 admin.site.register(Contact, CustomAdmin)

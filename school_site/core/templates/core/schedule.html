@@ -1,14 +1,30 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-	<h2 align="center" class="section-title">Розклад дзвінків</h2>
+	<h2 align="center" class="section-title">РОЗКЛАД ДЗВІНКІВ</h2>
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
+			<h2 class="section-title" align="center">Літній час</h2>
 			<div class="row ">
 			{% for schedule in time %}
 				{% if schedule.table_type == 'general_summer' %}
-					<div class="col-md-6 p-2">
-						<h3 align="center" class="section-title pt-0 mt-0">{{ schedule.title }}</h3>
+					<div class="col-md-6 p-3">
+						<h4 align="center" class="pt-0 mt-0">{{ schedule.title }}</h3>
+						<div class="schedule-time-table table-striped table-bordered" align="center">
+							{{ schedule.table|safe }}
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}	
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<h2 class="section-title" align="center">Зимовий час</h2>
+			<div class="row ">
+			{% for schedule in time %}
+				{% if schedule.table_type == 'general_summer' %}
+					<div class="col-md-6 p-3">
+						<h4 align="center" class="pt-0 mt-0">{{ schedule.title }}</h3>
 						<div class="schedule-time-table table-striped table-bordered" align="center">
 							{{ schedule.table|safe }}
 						</div>
@@ -19,13 +35,13 @@
 		</div>
 	</div>
 
-	<h2 align="center" class="section-title">Розклад уроків</h2>
+	<h2 align="center" class="section-title">РОЗКЛАД УРОКІВ</h2>
 	<div class="row justify-content-center">
 	{% for schedule in lessons %}
 		{% if schedule.table_type == 'general' %}
 			<!--<div class="table-bordered">-->
 			
-				<a href="{{ schedule.table.url }}" data-toggle="lightbox" class="col-md-4">
+				<a href="{{ schedule.table.url }}" data-toggle="lightbox" class="col-md-6 p-2">
 					<img src="{{ schedule.table.url }}" class="img-fluid rounded">
 				</a>
 			

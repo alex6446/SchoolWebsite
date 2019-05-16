@@ -7,7 +7,12 @@
 		<h2>{{ object.name }}</h2>
 		<p>{{ object.rank }}</p>
 		<p>{{ object.description }}</p>
-
+		{% if object.teacher_files.all %}
+		<p><b>Файли</b></p>
+		{% for link in object.teacher_files.all %}
+			<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+		{% endfor %}
+	{% endif %}
 	<br>
 
 {% endblock content %}

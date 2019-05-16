@@ -14,6 +14,12 @@
 	<h2>{{ object.title }}</h2>
 	<p>On {{ object.date_posted|date:"d F Y" }}</p>
 	<p>{{ object.content|safe }}</p>
+	{% if object.news_files.all %}
+		<p><b>Файли</b></p>
+		{% for link in object.news_files.all %}
+			<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+		{% endfor %}
+	{% endif %}
 	</div>
 
 {% endblock content %}
