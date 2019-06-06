@@ -11,6 +11,7 @@ from .models import (
 	Contact,
 	Gallery,
 	GalleryImage,
+	Background,
 	AttachedFileNews,
 	AttachedFileAbout,
 	AttachedFileEvent,
@@ -68,4 +69,5 @@ admin.site.register(Timetable, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
 admin.site.register(Contact, CustomAdmin)
 admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Background)
 

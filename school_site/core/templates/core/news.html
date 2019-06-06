@@ -7,7 +7,7 @@
 			<div class="col-md-12">
 				<h2 align="center" class="section-title">Оголошення</h2><br>
 			</div>
-			<div class="col-md-11 event-all ">
+			<div class="col-lg-11 event-all ">
 				<div class=" row  p-3">
 				{% for post in events %}
 				<a href="{% url 'event-detail' post.id %}">
@@ -42,17 +42,17 @@
 				<br>
 			</div>
 		{% endif %}
-		<div class="col-md-11">
+		<div class="col-lg-11">
 			{% for post in news %}
 				<div class=" p-0 mb-3 bg-white news-preview">
 					<a href="{% url 'news-detail' post.id %}">
 					<div class="row no-gutters">
-						<div class="col-md-6">
+						<div class="col-lg-6">
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
-						<div class="col-md-6">
+						<div class="col-lg-6">
+							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
 							<div class="p-4  news-content">
-								<p>{{ post.date_posted|date:"d F Y" }}</p>
 								<h3>{{ post.title }}</h3>	
 								<p>{{ post.content|safe|truncatewords_html:"35" }}</p>
 							</div>

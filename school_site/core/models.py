@@ -87,6 +87,27 @@ class Gallery(models.Model):
 	def __str__(self):
 		return self.title
 
+class Background(models.Model):
+	home = 'home'
+	about = 'about'
+	gallery = 'gallery'
+	schedule = 'schedule'
+	students = 'students'
+	news = 'news'
+	PAGES = (
+		(home, "home"),
+		(about, "about"),
+		(gallery, "gallery"),
+		(schedule, "schedule"),
+		(students, "students"),
+		(news, "news"),
+		)
+	page = models.CharField(max_length=25, choices=PAGES, default=home)
+	image = models.ImageField(upload_to="backgrounds", default=None)
+
+	def __str__(self):
+		return self.page
+
 class GalleryImage(models.Model):
 	gallery = models.ForeignKey(Gallery, related_name='images', on_delete=models.SET_NULL, null=True)
 	image = models.ImageField()

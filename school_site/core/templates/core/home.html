@@ -1,7 +1,8 @@
 {% extends 'core/base.html' %}
 {% block content %}
-	<br><br><br>
-
+	{% if background_home %}
+		<div class="home_background_height"></div>
+	{% endif %}
 	<div class="container-fluid content-margin">
 	<div class="row justify-content-center no-gutters">
 		<!-- <div class="col-md-12">
@@ -39,7 +40,7 @@
 										{{ post.title }}
 										<span class="event-text"><p>{{ post.content|safe|truncatewords_html:"24" }}</p></span><p></p>
 										<a href="{% url 'event-detail' post.id %}" >
-											<button class="btn rounded-0 event-more-btn" >Read more</button>
+											<button class="btn rounded-0 event-more-btn" >Детальніше</button>
 										</a>
 										<br>
 										<br>
@@ -83,10 +84,12 @@
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
 						<div class="col-lg-6">
+							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
 							<div class="p-4">
-								<p>{{ post.date_posted|date:"d F Y" }}</p>
+								<p></p>
+								<!-- <hr class="thick-yellow" align="left"> -->
 								<h3>{{ post.title }}</h3>	
-								<p>{{ post.content|safe|truncatewords:"35" }}</p>
+								<p style="margin-bottom: 0;">{{ post.content|safe|truncatewords:"65" }}</p>
 							</div>
 						</div>
 					</div>

@@ -25,13 +25,17 @@ SECRET_KEY = ')2%l9n1mr$8&=ji^4(--6s7_yvg+221=v(z1r*w-c%+)bvae8m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '05de7058.ngrok.io',
+    'localhost'
+]
 
 SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 'easy_maps',
     'crispy_forms',
     'django.contrib.sites',
     'fluent_contents.plugins.googledocsviewer',
@@ -179,6 +183,8 @@ EMAIL_PORT = 587
 # ACCOUNT_EMAIL_SUBJECT_PREFIX = 'school2'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# EASY_MAPS_GOOGLE_KEY = 'AIzaSyCwRFDROO70Wg4OJe9XmzSbM6pht-jOzBk'
 
 #EMAIL_HOST = 'localhost'
 #EMAIL_PORT = 1025

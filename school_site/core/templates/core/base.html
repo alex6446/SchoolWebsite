@@ -18,10 +18,11 @@
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'core/main.css' %}"> -->
 
     <link rel="stylesheet" type="text/css" href="{% static 'core/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/icons.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="shortcut icon" href="">
 
 	{% if title %}
@@ -30,45 +31,63 @@
 		<title>No title</title>
 	{% endif %}
 </head>
-<body>
+
+{% if changebg %}
+	{% if background_home %}
+		<body style="background-color: #ececec; background-image:  url({{ background_home.url }});">
+	{% else %}
+		<body style="background-color: #ececec;">
+	{% endif %}		
+{% else %}
+	<body style="background-color: #ffffff;">
+{% endif %}
+
 <wrapper class="d-flex flex-column">	
 
 
 
+	<!-- <nav class="row m-0">
+		<div class=" col-lg-2 p-2 bg-white navbar navbar-expand-lg navbar navbar-light brand-style justify-content-lg-center ">
+		 
 
-	<nav class="navbar navbar-expand-md navbar navbar-dark navbar-bg">
-	  <a class="navbar-brand" href="{% url 'core-home' %}">ЗОШ №2</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-	    <ul class="navbar-nav text-right">
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-about' %}">Про школу</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-gallery' %}">Галерея</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-schedule' %}">Розклад</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-students' %}">Учням</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-news' %}">Новини</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'core-contacts' %}">Контакти</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="/admin">Admin</a>
-	      </li>
-	    </ul>
-	  </div>
+			  	<a class="navbar-brand text-center brand-style" href="{% url 'core-home' %}"><b>ЗОШ №2</b> <br> <span style="font-size: 11pt;">Чорноморськ</span></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+				</button>
+
+	  	</div> -->
+		<div class="navbar navbar-expand-lg navbar navbar-dark navbar-bg">
+		<a class="navbar-brand text-center brand-style" href="{% url 'core-home' %}"><b><span style="font-size: 16pt;">ЗОШ №2</span></b> <br> <span style="font-size: 10pt;">Чорноморськ</span></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+				</button>
+		<div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+			<hr>
+	    	<ul class="navbar-nav text-left" style="margin-left: 10px;">
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="{% url 'core-about' %}">Про школу</a>
+	      		</li>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="{% url 'core-gallery' %}">Галерея</a>
+	      		</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="{% url 'core-schedule' %}">Розклад</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="{% url 'core-students' %}">Учням</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="{% url 'core-news' %}">Новини</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="{% url 'core-contacts' %}">Контакти</a>
+		      	</li>
+		    </ul>
+	  	</div>
+		</div>
 	</nav>
 
 

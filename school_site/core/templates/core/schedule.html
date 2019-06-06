@@ -8,7 +8,7 @@
 			<div class="row ">
 			{% for schedule in time %}
 				{% if schedule.table_type == 'general_summer' %}
-					<div class="col-md-6 p-3">
+					<div class="col-lg-6 p-3">
 						<h4 align="center" class="pt-0 mt-0">{{ schedule.title }}</h3>
 						<div class="schedule-time-table table-striped table-bordered" align="center">
 							{{ schedule.table|safe }}
@@ -23,7 +23,7 @@
 			<div class="row ">
 			{% for schedule in time %}
 				{% if schedule.table_type == 'general_summer' %}
-					<div class="col-md-6 p-3">
+					<div class="col-lg-6 p-3">
 						<h4 align="center" class="pt-0 mt-0">{{ schedule.title }}</h3>
 						<div class="schedule-time-table table-striped table-bordered" align="center">
 							{{ schedule.table|safe }}

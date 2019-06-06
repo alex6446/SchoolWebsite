@@ -15,6 +15,7 @@ from .models import (
 	Contact,
 	Gallery,
 	GalleryImage,
+	Background,
 	)
 from .forms import ContactForm
 
@@ -29,11 +30,19 @@ def home(request):
 	paginator = Paginator(event_list, 2)
 	pEvent = paginator.get_page(page)
 
+	background_list = Background.objects.filter(page='home')
+	try:
+		background_home = background_list[0].image
+	except:
+		background_home = None
+
 	context = {
 		'events': pEvent,
 		'about': About.objects.all(),
 		'news': pNews,
-		'title': 'Home'
+		'title': 'Home',
+		'changebg': True,
+		'background_home': background_home,
 	}
 	return render(request, 'core/home.html', context)
 
@@ -46,10 +55,14 @@ def about(request):
 	return render(request, 'core/about.html', context)
 
 def gallery(request):
-	gallery = Gallery.objects.all().order_by('-date_posted')
+	gallery_list = Gallery.objects.all().order_by('-date_posted')
+	paginator = Paginator(gallery_list, 2)
+	page = request.GET.get('page')
+	pGallery = paginator.get_page(page)
 	context = {
 		'title': 'Gallery',
-		'gallery': gallery,
+		'gallery': pGallery,
+		'changebg': True,
 	}
 	return render(request, 'core/gallery.html', context)
 
@@ -78,6 +91,7 @@ def news(request):
 		'title': 'News',
 		'events': Event.objects.all().order_by('-date_posted'),
 		'news': pNews,
+		'changebg': True,
 	}
 	return render(request, 'core/news.html', context)
 

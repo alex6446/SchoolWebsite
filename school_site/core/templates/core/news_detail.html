@@ -17,7 +17,7 @@
 	{% if object.news_files.all %}
 		<p><b>Файли</b></p>
 		{% for link in object.news_files.all %}
-			<a href="{{ link.file.url }}">{{ link.name }}</a> <br>
+			<a href="{{ link.file.url }}" class="link-icon">{{ link.name }}</a> <br>
 		{% endfor %}
 	{% endif %}
 	</div>
