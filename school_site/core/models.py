@@ -36,6 +36,16 @@ class Event(models.Model):
 		return self.title
 
 class Teacher(models.Model):
+	management = 'management'
+	primary = 'primary'
+	secondary = 'secondary'
+	TYPES = (
+		(management, "management"),
+		(primary, 'primary'),
+		(secondary, 'secondary'),
+		)
+
+	teacher_type = models.CharField(max_length=25, choices=TYPES, default=secondary)
 	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos')
 	name = models.CharField(max_length=150)
 	rank = models.CharField(max_length=150)
@@ -120,7 +130,7 @@ class AttachedFileNews(models.Model):
 class AttachedFileAbout(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
 	about = models.ForeignKey(About, related_name='about_files', on_delete=models.SET_NULL, null=True)
-	name = models.CharField(max_length=300, default="Download")
+	name = models.CharField(max_length=300)
 
 class AttachedFileEvent(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)

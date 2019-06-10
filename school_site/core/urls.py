@@ -11,6 +11,9 @@ from .views import (
 urlpatterns = [
     path('', views.home, name='core-home'),
     path('about/', views.about, name='core-about'),
+    path('about/teachers-management', views.teachers_management, name='core-about-teachers-management'),
+    path('about/teachers-primary', views.teachers_primary, name='core-about-teachers-primary'),
+    path('about/teachers-secondary', views.teachers_secondary, name='core-about-teachers-secondary'),
     path('gallery/', views.gallery, name='core-gallery'),
     path('schedule/', views.schedule, name='core-schedule'),
     path('students/', views.students, name='core-students'),

@@ -14,7 +14,7 @@ a.link-icon.link-file[href]:before {
     display: inline-block;
     font: normal normal normal 14px/1 Font Awesome\ 5 Free;
     font-weight: 900;
-    font-size: inherit;
+    font-size: 17pt;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -22,6 +22,7 @@ a.link-icon.link-file[href]:before {
     width: 20px;
     text-align: right;
     margin-right: 10px;
+    color: #343F64 !important;
 }
 a[href$=".txt"].link-icon:before,
 a.link-icon.link-text[href]:before {
@@ -60,6 +61,7 @@ a[href$=".zipx"].link-icon:before,
 a[href$=".rar"].link-icon:before,
 a[href$=".tar"].link-icon:before,
 a[href$=".gz"].link-icon:before,
+a[href$=".xz"].link-icon:before,
 a[href$=".dmg"].link-icon:before,
 a[href$=".iso"].link-icon:before,
 a.link-icon.link-archive[href]:before {

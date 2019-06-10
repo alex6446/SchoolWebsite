@@ -1,6 +1,5 @@
 {% extends 'core/base.html' %}
 {% block content %}
-	<br>
 
 	<div class="row justify-content-center">
 		<div class="col-lg-11">
@@ -11,15 +10,15 @@
 						<h2 class="section-title" align="center">{{ welcome.title }}</h2>
 					</div>
 					{% if welcome.image %}
-						<div class="col-lg-6 p-3">							
+						<div class="col-lg-6 p-1 pr-3 pt-4">							
 							<img src="{{ welcome.image.url }}" width="100%">
 						</div>
 						<div class="col-lg-6 p-1 about-welcome-text">
 							<p>{{ welcome.content|safe }}</p>
 							{% if welcome.about_files.all %}
-								<hr class="thick-yellow" align="left">
+								<hr class="hr-yellow-download" align="left">
 								{% for link in welcome.about_files.all %}
-									<a href="{{ link.file.url }}" class="link-icon">{{ link.name }}</a> <br>
+									<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
 								{% endfor %}
 							{% endif %}
 						</div>
@@ -27,9 +26,9 @@
 						<div class="col-lg-12 p-1 about-welcome-text">
 							<p>{{ welcome.content|safe }}</p>
 							{% if welcome.about_files.all %}
-								<hr class="thick-yellow" align="left">
+								<hr class="hr-yellow-download" align="left">
 								{% for link in welcome.about_files.all %}
-									<a href="{{ link.file.url }}" class="link-icon">{{ link.name }}</a> <br>
+									<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
 								{% endfor %}
 							{% endif %}
 						</div>
@@ -48,15 +47,15 @@
 					<div class="col-lg-12">
 						<h2  class="section-title" align="center" >{{ history.title }}</h2>
 					</div>
-					<div class="col-lg-12 p-3">
+					<div class="col-lg-12 p-1 pt-3">
 						{% if history.image %}
 							<img src="{{ history.image.url }}" width="100%" class="pb-4">
 						{% endif %}
 						<p>{{ history.content|safe }}</p>
 						{% if history.about_files.all %}
-								<p><b>Файли</b></p>
+								<hr class="hr-yellow-download" align="left" >
 								{% for link in history.about_files.all %}
-									<a href="{{ link.file.url }}" class="link-icon">{{ link.name }}</a> <br>
+									<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
 								{% endfor %}
 							{% endif %}
 					</div>
@@ -71,22 +70,47 @@
 			<h2 class="section-title" align="center">Наші вчителі</h2>
 		</div>
 		<div class="col-lg-11">
+			<div class="row ">
+				<div class="col-lg-4 p-2">
+					<a href="{% url 'core-about-teachers-management' %}">
+						<div class="about-teacher-block" style="">
+							<span class="about-teacher-text">Адміністрація</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 p-2">
+					<a href="{% url 'core-about-teachers-primary' %}">
+						<div class="about-teacher-block">
+							<span class="about-teacher-text">Початкова школа</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 p-2">
+					<a href="{% url 'core-about-teachers-secondary' %}">
+						<div class="about-teacher-block">
+							<span class="about-teacher-text">Середня школа</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-lg-11">
 			<div class="row p-1">
 				{% for teacher in teachers %}
 					<div class="teacher-preview col-lg-4 p-2">
 						<a href="{% url 'teacher-detail' teacher.id %}">
-							<div class="card rounded-0 border-0 bg-white">
+							<div class="card rounded-0 border-0 shadow bg-white">
 								<img class="card-img-top rounded-0" src="{{ teacher.photo.url }}">
 								<div class="card-body">
-									<h3>{{ teacher.name }}</h3>
-									<p>{{ teacher.rank }}</p>
+									<h4>{{ teacher.name }}</h4>
+									<p class="mb-0">{{ teacher.rank }}</p>
 								</div>
 							</div>
 						</a>
 					</div>
 				{% endfor %}
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<br>

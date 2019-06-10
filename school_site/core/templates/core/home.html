@@ -80,16 +80,15 @@
 				<div class="  p-0 mb-3 bg-white news-preview">
 					<a href="{% url 'news-detail' post.id %}">
 					<div class="row no-gutters">
-						<div class="col-lg-6">
+						<div class="col-lg-5">
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-7">
 							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
-							<div class="p-4">
-								<p></p>
+							<div class="pt-4 pr-4 pl-4 pb-3">
 								<!-- <hr class="thick-yellow" align="left"> -->
-								<h3>{{ post.title }}</h3>	
-								<p style="margin-bottom: 0;">{{ post.content|safe|truncatewords:"65" }}</p>
+								<h4>{{ post.title }}</h4>	
+								<p class="mb-0">{{ post.content|safe|truncatewords_html:"50" }}</p>
 							</div>
 						</div>
 					</div>

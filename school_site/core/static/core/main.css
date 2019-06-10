@@ -108,8 +108,32 @@ body {
 	/*background-image: url("zoh_resized2.png");*/
 	background-repeat: no-repeat;
 	background-size: 100%;
-	background-height: 100px;
+	/*background-height: 100px;*/
 	/*font-family: 'Poppins', sans-serif;*/
+}
+
+
+.logo-text span{
+	color: white;
+}
+
+.logo-text {
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+	margin-top: 6px;
+	margin-left: 5px;
+}
+
+.school-logo {
+	width: 30%;
+	vertical-align: top;
+}
+
+
+.background-image img{
+	display: block !important;
+	width: 100%
 }
 
 footer {
@@ -154,6 +178,13 @@ footer {
 
 a {
 	outline: none;
+}
+
+a.link-icon-text {
+	color: black;
+	font-weight: 500;
+	/*font-size: 14pt;*/
+	line-height: 2;
 }
 
 .nav-item a {
@@ -271,7 +302,7 @@ a {
 	text-decoration: none;
 }
 
-.news-preview a:hover h3 {
+.news-preview a:hover h4 {
 	color: #69718B;
 }
 
@@ -311,16 +342,44 @@ hr.light {
 	border-top: 1px solid #d3d3d3;
 }
 
-hr.thick-yellow {
+hr.hr-yellow-download {
 	border: none;
 	background-color: #E9DB89;
 	height: 3px;
 	width: 50%;
 }
 
-/*.about-welcome-text  {
-	font-size: 12pt;
-}*/
+hr.hr-yellow {
+	border: none;
+	background-color: #E9DB89;
+	height: 3px;
+}
+
+.about-welcome-text  {
+	color: #343F64 !important;
+}
+
+.about-teacher-block {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	background-color: #E9DB89; 
+	text-align: center; 
+	width: 100%; 
+	font-weight: bold;
+	font-size: 18px; 
+	color: #343F64;
+}
+
+.about-teacher-block:hover {
+	background-color: #ece09a;
+}
+
+.about-teacher-text {
+	display: inline-block;
+	max-width: 75%;
+	vertical-align: middle;
+	height: initial;
+}
 
 .teacher-preview a {
 	text-decoration: none;
@@ -370,8 +429,8 @@ hr.thick-yellow {
 }
 
 #map {
-	height: 400px;
-	width: 50%;
+	height: 500px;
+	width: 100%;
 }
 
 

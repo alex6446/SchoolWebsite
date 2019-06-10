@@ -47,14 +47,52 @@ def home(request):
 	return render(request, 'core/home.html', context)
 
 def about(request):
+	background_list = Background.objects.filter(page='about')
+	try:
+		background_about = background_list[0].image
+	except:
+		background_about = None
+
 	context = {
 		'title': 'About',
 		'about': About.objects.all(),
 		'teachers': Teacher.objects.all(),
+		'background_about': background_about,
+		# 'changebg': True,
 	}
 	return render(request, 'core/about.html', context)
 
+def teachers_management(request):
+	context = {
+		'title': 'Management',
+		'teachers': Teacher.objects.filter(teacher_type='management'),
+		'changebg': True,
+	}
+	return render(request, 'core/teachers_management.html', context)
+
+def teachers_primary(request):
+	context = {
+		'title': 'Primary',
+		'teachers': Teacher.objects.filter(teacher_type='primary'),
+		'changebg': True,
+	}
+	return render(request, 'core/teachers_primary.html', context)
+
+def teachers_secondary(request):
+	context = {
+		'title': 'Secondary',
+		'teachers': Teacher.objects.filter(teacher_type='secondary'),
+		'changebg': True,
+	}
+	return render(request, 'core/teachers_secondary.html', context)
+
 def gallery(request):
+	background_list = Background.objects.filter(page='gallery')
+	try:
+		background_gallery = background_list[0].image
+	except:
+		background_gallery = None
+
 	gallery_list = Gallery.objects.all().order_by('-date_posted')
 	paginator = Paginator(gallery_list, 2)
 	page = request.GET.get('page')
@@ -62,26 +100,48 @@ def gallery(request):
 	context = {
 		'title': 'Gallery',
 		'gallery': pGallery,
+		'background_gallery': background_gallery,
 		'changebg': True,
 	}
 	return render(request, 'core/gallery.html', context)
 
 def schedule(request):
+	background_list = Background.objects.filter(page='schedule')
+	try:
+		background_schedule = background_list[0].image
+	except:
+		background_schedule = None
+
 	context = {
 		'title': 'Schedule',
 		#'tables': HtmlScheduleTables,
 		'lessons': Schedule.objects.all(),
 		'time': Timetable.objects.all(),
+		'background_schedule': background_schedule,
+		# 'changebg': True,
 	}
 	return render(request, 'core/schedule.html', context)
 
 def students(request):
+	background_list = Background.objects.filter(page='students')
+	try:
+		background_students = background_list[0].image
+	except:
+		background_students = None
+
 	context = {
 		'title': 'Students',
+		'background_students': background_students,
 	}
 	return render(request, 'core/students.html', context)
 
 def news(request):
+	background_list = Background.objects.filter(page='news')
+	try:
+		background_news = background_list[0].image
+	except:
+		background_news = None
+
 	news_list = News.objects.all().order_by('-date_posted')
 	paginator = Paginator(news_list, 4)
 	page = request.GET.get('page')
@@ -91,6 +151,7 @@ def news(request):
 		'title': 'News',
 		'events': Event.objects.all().order_by('-date_posted'),
 		'news': pNews,
+		'background_news': background_news,
 		'changebg': True,
 	}
 	return render(request, 'core/news.html', context)
@@ -116,7 +177,8 @@ def contacts(request):
 	context = {
 		'title': 'Contacts',
 		'form': form,
-		'info': Contact.objects.all()
+		'info': Contact.objects.all(),
+		'background_contacts': True,
 	}
 	return render(request, 'core/contacts.html', context)
 

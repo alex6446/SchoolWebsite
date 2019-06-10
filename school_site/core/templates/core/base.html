@@ -57,7 +57,13 @@
 
 	  	</div> -->
 		<div class="navbar navbar-expand-lg navbar navbar-dark navbar-bg">
-		<a class="navbar-brand text-center brand-style" href="{% url 'core-home' %}"><b><span style="font-size: 16pt;">ЗОШ №2</span></b> <br> <span style="font-size: 10pt;">Чорноморськ</span></a>
+		<a class="navbar-brand  brand-style" href="{% url 'core-home' %}">
+			<img src="{% static 'core/school_logo.svg' %}" class="school-logo">
+			<div class="logo-text">
+				<b><span style="font-size: 16pt;">ЗОШ №2</span></b> <br> 
+				<span style="font-size: 10pt;">Чорноморськ</span>
+			</div>
+		</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    		<span class="navbar-toggler-icon"></span>
 				</button>
@@ -89,6 +95,46 @@
 	  	</div>
 		</div>
 	</nav>
+
+
+
+	{% if background_about %}
+		<div class="background-image">
+			<img src="{{ background_about.url }}">
+		</div>
+	{% elif background_gallery %}
+		<div class="background-image">
+			<img src="{{ background_gallery.url }}">
+		</div>
+	{% elif background_schedule %}
+		<div class="background-image">
+			<img src="{{ background_schedule.url }}">
+		</div>
+	{% elif background_students %}
+		<div class="background-image">
+			<img src="{{ background_students.url }}">
+		</div>
+	{% elif background_news %}
+		<div class="background-image">
+			<img src="{{ background_news.url }}">
+		</div>
+	{% elif background_contacts %}
+		<div id="map"></div>
+	    <script>
+	      function initMap() {
+	      	var location = {lat: 46.302750, lng: 30.657820};
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	          zoom: 17,
+	          center: location
+	        });
+	        var marker = new google.maps.Marker({
+	        	position: location,
+	        	map: map
+	        })
+	      }
+	    </script>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwRFDROO70Wg4OJe9XmzSbM6pht-jOzBk&callback=initMap" async defer></script>
+	{% endif %}
 
 
 
