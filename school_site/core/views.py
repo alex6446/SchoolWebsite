@@ -16,6 +16,7 @@ from .models import (
 	Gallery,
 	GalleryImage,
 	Background,
+	StudentItem,
 	)
 from .forms import ContactForm
 
@@ -38,7 +39,8 @@ def home(request):
 
 	context = {
 		'events': pEvent,
-		'about': About.objects.all(),
+		# 'events': None,
+		'about': About.objects.filter(post_type="welcome"),
 		'news': pNews,
 		'title': 'Home',
 		'changebg': True,
@@ -112,11 +114,21 @@ def schedule(request):
 	except:
 		background_schedule = None
 
+	time_general_summer = Timetable.objects.filter(table_type='general_summer')
+	time_general_winter = Timetable.objects.filter(table_type='general_winter')
+	time_extra = Timetable.objects.filter(table_type='extra')
+
+	lessons_general = Schedule.objects.filter(table_type='general')
+	lessons_extra = Schedule.objects.filter(table_type='extra')
+
 	context = {
 		'title': 'Schedule',
 		#'tables': HtmlScheduleTables,
-		'lessons': Schedule.objects.all(),
-		'time': Timetable.objects.all(),
+		'time_general_summer': time_general_summer,
+		'time_general_winter': time_general_winter,
+		'time_extra': time_extra,
+		'lessons_general': lessons_general,
+		'lessons_extra': lessons_extra,		
 		'background_schedule': background_schedule,
 		# 'changebg': True,
 	}
@@ -131,6 +143,7 @@ def students(request):
 
 	context = {
 		'title': 'Students',
+		'student_items': StudentItem.objects.all(),
 		'background_students': background_students,
 	}
 	return render(request, 'core/students.html', context)
@@ -150,6 +163,7 @@ def news(request):
 	context = {
 		'title': 'News',
 		'events': Event.objects.all().order_by('-date_posted'),
+		# 'events': None,
 		'news': pNews,
 		'background_news': background_news,
 		'changebg': True,
@@ -184,12 +198,53 @@ def contacts(request):
 
 class news_detail(DetailView):
 	model = News
+
+	def get_object(self):
+		object = super(DetailView, self).get_object()
+		self.title = object.title
+		return object
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = self.title
+		return context
 	
 class event_detail(DetailView):
 	model = Event
 
+	def get_object(self):
+		object = super(DetailView, self).get_object()
+		self.title = object.title
+		return object
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = self.title
+		return context
+
 class teacher_detail(DetailView):
 	model = Teacher
 
+	def get_object(self):
+		object = super(DetailView, self).get_object()
+		self.title = object.name
+		return object
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = self.title
+		return context
+
 class gallery_detail(DetailView):
 	model = Gallery
+
+	def get_object(self):
+		object = super(DetailView, self).get_object()
+		self.title = object.title
+		return object
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = self.title
+		# context['test'] = "BINGO"
+		return context

@@ -1,25 +1,18 @@
 {% extends 'core/base.html' %}
 {% block content %}
-
-	<h1>News Detail</h1>
 	<br>
-	<div class="test">
-	<div class="row">
-		<a href="{{ object.image.url }}" data-toggle="lightbox" data-title="Image" class="col-md-4">
-			<img src="{{ object.image.url }}" class="img-fluid rounded">
-		</a>
-	</div>
-
+	<img src="{{ object.image.url }}" width="100%">
+	<p><span class="news-preview-date float-right">{{ object.date_posted|date:"d.m.Y" }}</span></p>
+	<br>
 	<!--<img src="{{ object.image.url }}" height=150>-->
 	<h2>{{ object.title }}</h2>
-	<p>On {{ object.date_posted|date:"d F Y" }}</p>
 	<p>{{ object.content|safe }}</p>
 	{% if object.news_files.all %}
-		<p><b>Файли</b></p>
+		<hr class="hr-yellow-download" align="left" >
 		{% for link in object.news_files.all %}
-			<a href="{{ link.file.url }}" class="link-icon">{{ link.name }}</a> <br>
+			<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
 		{% endfor %}
 	{% endif %}
-	</div>
+
 
 {% endblock content %}

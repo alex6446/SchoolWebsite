@@ -16,9 +16,6 @@ body{
 	.p-5 {
 		padding: 2.5rem !important;
 	}
-	.home_background_height {
-		height: 150px;
-	}
 }
 
 @media (min-width: 576px){
@@ -30,9 +27,6 @@ body{
   	}
   	.row {
 		margin: 15px;
-	}
-	.home_background_height {
-		height: 300px;
 	}
   	/*.container-fluid {
   		padding-right: 0 !important;
@@ -53,7 +47,18 @@ body{
 	}*/
 }
 
+@media (max-width: 768px){
+	.welcome-image-fix {
+		padding: 0.25rem !important;
+	}
+}
+
 @media (min-width: 768px){
+	/*.container {
+		padding: 0;
+		margin: 0;
+		max-width: none;	
+	}*/
 	.card-columns {
     	column-count: 3;
   	}
@@ -63,15 +68,46 @@ body{
   	.row {
 		margin: 15px;
 	}
-	.home_background_height {
-		height: 385px;
-	}
   	/*.content-margin {
 		margin-top: 40rem;
 	}*/
 }
 
+@media (max-width: 992px){
+	.container {
+		max-width: none;	
+	}
+	.home-background-height {
+		height: 300px;
+	}
+	.home-background-height-no-events {
+		height: 375px;
+	}
+	.background-image-home img {
+		display: block !important;
+		height: 375px; /*250px for mobile*/  /*470px for city picture*/
+		object-fit: cover;
+		width: 100%;
+		position: absolute;
+	}
+	.background-image img {
+		display: block !important;
+		height: 250px; /*250px for mobile*/  /*470px for city picture*/
+		object-fit: cover;
+		width: 100%;
+	}
+	#map {
+		height: 250px;
+		width: 100%;
+		max-height: 500px;
+	}
+/*	.row-news {
+		margin: 0 !important;
+	}*/
+}
+
 @media (min-width: 992px){
+	
 	.card-columns {
     	column-count: 4;
   	}
@@ -81,11 +117,38 @@ body{
   	.row {
 		margin: 15px;
 	}
-	.home_background_height {
+	.home-background-height {
 		height: 600px;
+	}
+	.home-background-height-no-events {
+		height: 730px;
+	}
+	.background-image-home img {
+		display: block !important;
+		height: 730px; /*250px for mobile*/  /*470px for city picture*/
+		object-fit: cover;
+		width: 100%;
+		position: absolute;
+	}
+	.background-image img {
+		display: block !important;
+		height: 500px; /*250px for mobile*/  /*470px for city picture*/
+		object-fit: cover;
+		width: 100%;
+	}
+	#map {
+		height: 500px;
+		width: 100%;
+		max-height: 500px;
 	}
   /*	.content-margin {
 		margin-top: 40rem;
+	}*/
+}
+
+@media (min-width: 1200px) {
+	/*.container-fluid {
+		max-width: 1140px;
 	}*/
 }
 
@@ -93,10 +156,10 @@ body{
 	padding: 0;
 }
 
-.test {
+/*.test {
 	height: 100%;
 	min-height: 100%;
-}
+}*/
 
 wrapper {
 	min-height: 100vh;
@@ -106,8 +169,8 @@ body {
 	height: 100%;
 	min-height: 100vh;
 	/*background-image: url("zoh_resized2.png");*/
-	background-repeat: no-repeat;
-	background-size: 100%;
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;*/
 	/*background-height: 100px;*/
 	/*font-family: 'Poppins', sans-serif;*/
 }
@@ -128,12 +191,6 @@ body {
 .school-logo {
 	width: 30%;
 	vertical-align: top;
-}
-
-
-.background-image img{
-	display: block !important;
-	width: 100%
 }
 
 footer {
@@ -178,6 +235,7 @@ footer {
 
 a {
 	outline: none;
+	/*text-decoration: none !important;*/
 }
 
 a.link-icon-text {
@@ -223,10 +281,40 @@ a.link-icon-text {
 	width: 100%;
 }
 
+.card a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.card-text span {
+	color: #464646;
+}
+
+.card-body {
+	padding: 0.75rem;
+}
+
 .card-img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.modal-content {
+	border-radius: 0;
+	border: 0;
+}
+
+.modal-body {
+	padding: 0.5rem;
+}
+
+.modal-footer {
+	font-weight: bold;
+	padding: 0.5rem;
+	padding-top: 0;
+	justify-content: start;
+	border-top: 0;
 }
 
 .no-gutters {
@@ -302,7 +390,7 @@ a.link-icon-text {
 	text-decoration: none;
 }
 
-.news-preview a:hover h4 {
+.preview-link-highlight:hover {
 	color: #69718B;
 }
 
@@ -330,10 +418,6 @@ a.link-icon-text {
 	width: 100%;
 }
 
-.event-all a:hover h3 {
-	color: #69718B;
-}
-
 .event-all-date {
 	color: grey;
 }
@@ -359,26 +443,48 @@ hr.hr-yellow {
 	color: #343F64 !important;
 }
 
+.about-teacher-item {
+	text-decoration: none !important;
+}
+
 .about-teacher-block {
-	padding-top: 5rem;
+	overflow: hidden;
+	text-align: center;
+	height: 12rem;
+	background-color: #E9DB89;
+	/*padding-top: 5rem;
 	padding-bottom: 5rem;
 	background-color: #E9DB89; 
-	text-align: center; 
+	text-align: center;
+	vertical-align: middle; 
 	width: 100%; 
 	font-weight: bold;
 	font-size: 18px; 
-	color: #343F64;
+	color: #343F64;*/
 }
 
 .about-teacher-block:hover {
-	background-color: #ece09a;
+	background-color: #ece09a !important;
 }
 
-.about-teacher-text {
+.about-teacher-scuare {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.about-teacher-title {
 	display: inline-block;
 	max-width: 75%;
 	vertical-align: middle;
 	height: initial;
+	color: #343F64;
+	font-weight: bold;
+	font-size: 18px;
+	/*display: inline-block;
+	max-width: 75%;
+	vertical-align: middle;
+	height: initial;*/
 }
 
 .teacher-preview a {
@@ -391,9 +497,13 @@ hr.hr-yellow {
 	color: #69718B;
 }
 
-.contact-panel {
-	padding: 2rem;
+.contact-panel-adress {
+	padding-left: 2rem;
 	font-size: 11pt;
+}
+
+.contact-panel-mail {
+	margin-bottom: 1rem;
 }
 
 .form-group input, textarea {
@@ -428,11 +538,60 @@ hr.hr-yellow {
 	color: #343F64;
 }
 
-#map {
-	height: 500px;
-	width: 100%;
+.btn-page .btn-outline-info:link {
+	border: none;
+	color: #343F64 !important;
 }
 
+.btn-page .btn-outline-info:visited {
+	box-shadow: none !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-outline-info:hover {
+	background-color: #E9DB89 !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-outline-info:active,
+.btn-page .btn-outline-info:focus {
+	background-color: #ece09a !important;
+	box-shadow: none !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-info:link {
+	border: none;
+	background-color: #E9DB89 !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-info:visited {
+	background-color: #E9DB89 !important;
+	box-shadow: none !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-info:hover {
+	background-color: #ece09a !important;
+	color: #343F64 !important;
+}
+
+.btn-page .btn-info:active,
+.btn-page .btn-info:focus {
+	background-color: #ece09a !important;
+	box-shadow: none !important;
+	color: #343F64 !important;
+}
+
+
+/*.event-more-btn:hover {
+	background-color: #ece09a;
+}
+
+.event-more-btn:focus, .event-more-btn:active {
+	box-shadow: none !important;
+}*/
 
 /*.event-all-preview hr{
 	height: 5px;
@@ -443,11 +602,7 @@ hr.hr-yellow {
 	margin: 0.3rem;
 }*/
 
-/*.btn-pag {
-	outline-color: #343F64;
-	border-color: #343F64;
-	color: #343F64;
-}*/
+
 
 /* .button {
   background-color: #4CAF50;

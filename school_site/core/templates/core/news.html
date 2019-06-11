@@ -1,21 +1,20 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-	{% if not news.has_previous %}
+	{% if not news.has_previous and events %}
 		<div class="container-fluid ">
 		<div class="row  justify-content-center">
 			<div class="col-md-12">
 				<h2 align="center" class="section-title">Оголошення</h2><br>
 			</div>
-			<div class="col-lg-11 event-all ">
+			<div class="col-md-11 event-all ">
 				<div class=" row  p-3">
 				{% for post in events %}
 				<a href="{% url 'event-detail' post.id %}">
 					<div class="col-md-12">
-							<!-- <img src="{{ post.image.url }}" height=150> -->
-							<p class="event-all-date">{{ post.date_posted|date:"d F Y  G:i" }}</p>
-							<h3>{{ post.title }}</h3>
-							<p>{{ post.content|safe|truncatewords_html:"35" }}</p>
+							<span class="event-all-date">{{ post.date_posted|date:"d F Y  G:i" }}</span>
+							<h4 style="margin-top: 8px; margin-bottom: 3px;"><span class="preview-link-highlight">{{ post.title }}</span></h4>
+							{{ post.content|safe|truncatewords_html:"35" }}
 						{% if not post == events.last %}
 							<hr class="light">
 						{% endif %}
@@ -28,32 +27,25 @@
 		</div>
 		<br>
 	{% endif %}
-	
 
 
 	<div class="container-fluid ">
 	<div class="row  justify-content-center">
-		{% if not news.has_previous %}
-			<div class="col-md-12">
-				<h2 align="center" class="section-title">Новини</h2><br>
-			</div>
-		{% else %}
-			<div class="col-md-12">
-				<br>
-			</div>
-		{% endif %}
-		<div class="col-lg-11">
+		<div class="col-md-12">
+			<h2 align="center" class="section-title">Новини</h2><br>
+		</div>
+		<div class="col-md-11">
 			{% for post in news %}
 				<div class=" p-0 mb-3 bg-white news-preview">
 					<a href="{% url 'news-detail' post.id %}">
 					<div class="row no-gutters">
-						<div class="col-lg-5">
+						<div class="col-md-5">
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
-						<div class="col-lg-7">
+						<div class="col-md-7">
 							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
 							<div class="pt-4 pr-4 pl-4 pb-3 news-content">
-								<h4>{{ post.title }}</h4>	
+								<h4><span class="preview-link-highlight">{{ post.title }}</span></h4>	
 								<p class="mb-0" style="color: #2F2E2E;">{{ post.content|safe|truncatewords_html:"50" }}</p>
 							</div>
 						</div>
@@ -90,25 +82,25 @@
 	<br>
 	<br>
 -->
+	<!-- <br> -->
 	<br>
-	<br>
-	<div align="center">
+	<div align="center" class="btn-page">
 		{% if news.has_previous %}
-			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page=1">Перша</a>
-			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.has_previous_page_number }}">Попередня</a>
+			<a class="btn btn-outline-info mb-4 rounded-0" href="?page=1"><i class="fas fa-angle-double-left"></i></a>
+			<a class="btn btn-outline-info mb-4 rounded-0" href="?page={{ news.previous_page_number }}"><i class="fas fa-angle-left"></i></a>
 		{% endif %}
 
 		{% for num in news.paginator.page_range %}
 			{% if news.number == num %}
-				<a class="btn btn-info mb-4 rounded-0 btn-pag" href="?page={{ num }}">{{ num }}</a>
+				<a class="btn btn-info mb-4 rounded-0" href="?page={{ num }}"><b>{{ num }}</b></a>
 			{% elif num > news.number|add:'-3' and num < news.number|add:'+3' %}
-				<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ num }}">{{ num }}</a>
+				<a class="btn btn-outline-info mb-4 rounded-0" href="?page={{ num }}"><b>{{ num }}</b></a>
 			{% endif %}
 		{% endfor %}
 
 		{% if news.has_next %}
-			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.next_page_number }}">Наступна</a>
-			<a class="btn btn-outline-info mb-4 rounded-0 btn-pag" href="?page={{ news.paginator.num_pages }}">Остання</a>
+			<a class="btn btn-outline-info mb-4 rounded-0" href="?page={{ news.next_page_number }}"><i class="fas fa-angle-right"></i></a>
+			<a class="btn btn-outline-info mb-4 rounded-0" href="?page={{ news.paginator.num_pages }}"><i class="fas fa-angle-double-right"></i></a>
 		{% endif %}
 	</div>
 

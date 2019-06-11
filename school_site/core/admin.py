@@ -12,10 +12,12 @@ from .models import (
 	Gallery,
 	GalleryImage,
 	Background,
+	StudentItem,
 	AttachedFileNews,
 	AttachedFileAbout,
 	AttachedFileEvent,
 	AttachedFileTeacher,
+	AttachedFileStudentItem,
 	)
 
 
@@ -28,7 +30,7 @@ class GalleryImageInline(admin.TabularInline):
 	model = GalleryImage
 	extra = 1
 
-class GalleryAdmin(admin.ModelAdmin):
+class GalleryAdmin(CustomAdmin):
 	inlines = [ GalleryImageInline, ]
 
 class AttachedFileNewsInline(admin.TabularInline):
@@ -59,12 +61,20 @@ class AttachedFileTeacherInline(admin.TabularInline):
 class AttachedFileTeacherAdmin(CustomAdmin):
 	inlines = [ AttachedFileTeacherInline, ]
 
+class AttachedFileStudentItemInline(admin.TabularInline):
+	model = AttachedFileStudentItem
+	extra = 1
+
+class AttachedFileStudentItemAdmin(CustomAdmin):
+	inlines = [ AttachedFileStudentItemInline, ]
+
 
 
 admin.site.register(News, AttachedFileNewsAdmin)
 admin.site.register(About, AttachedFileAboutAdmin)
 admin.site.register(Event, AttachedFileEventAdmin)
 admin.site.register(Teacher, AttachedFileTeacherAdmin)
+admin.site.register(StudentItem, AttachedFileStudentItemAdmin)
 admin.site.register(Timetable, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
 admin.site.register(Contact, CustomAdmin)

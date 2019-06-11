@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class News(models.Model):
-	title = models.CharField(max_length=150)
+	title = models.CharField(max_length=300)
 	image = models.ImageField(default='news_pics/default.png', upload_to='news_pics')
 	content = models.TextField()
 	date_posted = models.DateTimeField(default=timezone.now)
@@ -19,7 +19,7 @@ class About(models.Model):
 		(history, "history"),
 		)
 	post_type = models.CharField(max_length=25, choices=TYPES, default=welcome)
-	title = models.CharField(max_length=150)
+	title = models.CharField(max_length=300)
 	image = models.ImageField(default=None, upload_to='about_pics', blank=True)
 	content = models.TextField()
 
@@ -27,8 +27,8 @@ class About(models.Model):
 		return self.title
 
 class Event(models.Model):
-	title = models.CharField(max_length=150)
-	image = models.ImageField(default='event_pics/default.png', upload_to='event_pics')
+	title = models.CharField(max_length=300)
+	image = models.ImageField(blank=True, upload_to='event_pics')
 	content = models.TextField()
 	date_posted = models.DateTimeField(default=timezone.now)
 
@@ -63,7 +63,7 @@ class Timetable(models.Model):
 		(general_winter, "general_winter"),
 		(extra, "extra"),
 		)
-	title = models.CharField(max_length=150)
+	title = models.CharField(max_length=300)
 	table_type = models.CharField(max_length=25, choices=TYPES, default=general_summer)
 	table = models.TextField()
 
@@ -83,8 +83,17 @@ class Schedule(models.Model):
 	def __str__(self):
 		return self.table_type
 
+class StudentItem(models.Model):
+	title = models.CharField(max_length=300)
+	image = models.ImageField(default=None, upload_to='student_item_pics', blank=True)
+	content = models.TextField()
+
+	def __str__(self):
+		return self.title
+		
+
 class Contact(models.Model):
-	title = models.CharField(max_length=150)
+	title = models.CharField(max_length=300)
 	information = models.TextField()
 
 	def __str__(self):
@@ -92,6 +101,7 @@ class Contact(models.Model):
 
 class Gallery(models.Model):
 	title = models.CharField(max_length=300)
+	description = models.TextField(blank=True)
 	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
@@ -121,11 +131,12 @@ class Background(models.Model):
 class GalleryImage(models.Model):
 	gallery = models.ForeignKey(Gallery, related_name='images', on_delete=models.SET_NULL, null=True)
 	image = models.ImageField()
+	title = models.CharField(max_length=300, blank=True)
 
 class AttachedFileNews(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
 	news = models.ForeignKey(News, related_name='news_files', on_delete=models.SET_NULL, null=True)
-	name = models.CharField(max_length=300, default="Download")
+	name = models.CharField(max_length=300)
 
 class AttachedFileAbout(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
@@ -135,10 +146,15 @@ class AttachedFileAbout(models.Model):
 class AttachedFileEvent(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
 	event = models.ForeignKey(Event, related_name='event_files', on_delete=models.SET_NULL, null=True)
-	name = models.CharField(max_length=300, default="Download")
+	name = models.CharField(max_length=300)
 
 class AttachedFileTeacher(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
 	teacher = models.ForeignKey(Teacher, related_name='teacher_files', on_delete=models.SET_NULL, null=True)
-	name = models.CharField(max_length=300, default="Download")
+	name = models.CharField(max_length=300)
+
+class AttachedFileStudentItem(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	student_item = models.ForeignKey(StudentItem, related_name='student_item_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300)
 

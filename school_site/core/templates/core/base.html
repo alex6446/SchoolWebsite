@@ -33,11 +33,7 @@
 </head>
 
 {% if changebg %}
-	{% if background_home %}
-		<body style="background-color: #ececec; background-image:  url({{ background_home.url }});">
-	{% else %}
-		<body style="background-color: #ececec;">
-	{% endif %}		
+	<body style="background-color: #ececec;">
 {% else %}
 	<body style="background-color: #ffffff;">
 {% endif %}
@@ -56,7 +52,7 @@
 				</button>
 
 	  	</div> -->
-		<div class="navbar navbar-expand-lg navbar navbar-dark navbar-bg">
+		<div class="navbar navbar-expand-md navbar navbar-dark navbar-bg">
 		<a class="navbar-brand  brand-style" href="{% url 'core-home' %}">
 			<img src="{% static 'core/school_logo.svg' %}" class="school-logo">
 			<div class="logo-text">
@@ -74,7 +70,7 @@
 	        		<a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
 	      		</li>
 	      		<li class="nav-item">
-	        		<a class="nav-link" href="{% url 'core-about' %}">Про школу</a>
+	        		<a class="nav-link" href="{% url 'core-about' %}">Школа</a>
 	      		</li>
 	      		<li class="nav-item">
 	        		<a class="nav-link" href="{% url 'core-gallery' %}">Галерея</a>
@@ -97,8 +93,11 @@
 	</nav>
 
 
-
-	{% if background_about %}
+	{% if background_home %}
+		<div class="background-image-home">
+			<img src="{{ background_home.url }}">
+		</div>
+	{% elif background_about %}
 		<div class="background-image">
 			<img src="{{ background_about.url }}">
 		</div>
@@ -170,7 +169,7 @@
 			</li>
 		</ul>
 	</nav>-->
-	<div class="container flex-fill">
+	<div class="container flex-fill" style="position: relative;">
 		{% if messages %}
 			{% for message in messages %}
 				<div class="alert alert-{{ message.tags }}">
