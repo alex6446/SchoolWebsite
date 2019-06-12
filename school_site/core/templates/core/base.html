@@ -53,44 +53,74 @@
 
 	  	</div> -->
 		<div class="navbar navbar-expand-md navbar navbar-dark navbar-bg">
-		<a class="navbar-brand  brand-style" href="{% url 'core-home' %}">
-			<img src="{% static 'core/school_logo.svg' %}" class="school-logo">
-			<div class="logo-text">
-				<b><span style="font-size: 16pt;">ЗОШ №2</span></b> <br> 
-				<span style="font-size: 10pt;">Чорноморськ</span>
-			</div>
-		</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		    		<span class="navbar-toggler-icon"></span>
-				</button>
-		<div class="collapse navbar-collapse justify-content-end " id="navbarNav">
-			<hr>
-	    	<ul class="navbar-nav text-left" style="margin-left: 10px;">
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
-	      		</li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="{% url 'core-about' %}">Школа</a>
-	      		</li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="{% url 'core-gallery' %}">Галерея</a>
-	      		</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="{% url 'core-schedule' %}">Розклад</a>
-		      	</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="{% url 'core-students' %}">Учням</a>
-		      	</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="{% url 'core-news' %}">Новини</a>
-		      	</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="{% url 'core-contacts' %}">Контакти</a>
-		      	</li>
-		    </ul>
-	  	</div>
+			<a class="navbar-brand  brand-style" href="{% url 'core-home' %}">
+				<img src="{% static 'core/school_logo.svg' %}" class="school-logo">
+				<div class="logo-text">
+					<b><span style="font-size: 16pt;">ЗОШ №2</span></b> <br> 
+					<span style="font-size: 10pt;">Чорноморськ</span>
+				</div>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    		<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+				<hr>
+		    	<ul class="navbar-nav text-left" >
+		      		<li class="nav-item">
+		        		<a class="nav-link" href="{% url 'core-home' %}">Головна  <span class="sr-only"></span></a>
+		      		</li>
+		      		<li class="dropdown" style="display: inline-flex !important; flex-wrap: wrap;">
+		        		<a class="nav-link" href="{% url 'core-about' %}" style="flex-basis: 30%;">Школа</a>
+		        		<a class="nav-link float-right dropdown-icon-fix" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" style="flex-basis: 70%;"> <i class="fas fa-chevron-down dropdown-responsive-icon"></i></a>
+		        		<ul class="dropdown-menu shadow" style="flex-basis: 100%;">
+		        			<li class="nav-item">
+				        		<a class="" href="{% url 'core-gallery' %}">Галерея</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-gallery' %}">Історія нашої школи</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-gallery' %}">Наші вчителі</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-gallery' %}">Досягнення та перемоги</a>
+				      		</li>
+		        		</ul>
+		      		</li>
+		      		<li class="dropdown" style="display: inline-flex !important; flex-wrap: wrap;">
+		        		<a class="nav-link" href="{% url 'core-students' %}" style="flex-basis: 30%;">Учням</a>
+		        		<a class="nav-link float-right dropdown-icon-fix" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" style="flex-basis: 70%;"> <i class="fas fa-chevron-down dropdown-responsive-icon"></i></a>
+		        		<ul class="dropdown-menu shadow" style="flex-basis: 100%;">
+		        			<li class="nav-item">
+				        		<a class="" href="{% url 'core-schedule' %}">Розклад</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ДПА</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ЗНО</a>
+				      		</li>
+		        		</ul>
+		      		</li>
+			      	<!-- <li class="dropdown">
+			        	<a class="nav-link" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" href="{% url 'core-students' %}">Учням</a>
+			      		<ul class="dropdown-menu shadow">
+			      			<li class="nav-item">
+					        	<a class="" href="{% url 'core-schedule' %}">Розкладlkzdcspexysdirjkb</a>
+					      	</li>
+			      		</ul>
+			      	</li> -->
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="{% url 'core-news' %}">Новини</a>
+			      	</li>
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="{% url 'core-contacts' %}">Контакти</a>
+			      	</li>
+			    </ul>
+		  	</div>
 		</div>
 	</nav>
+
 
 
 	{% if background_home %}
@@ -207,6 +237,9 @@
 		</div>
 	</footer>
 
+
+
+
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -214,6 +247,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="{% static 'core/image.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/dropdown-fix.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </wrapper>
