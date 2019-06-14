@@ -23,11 +23,16 @@
 						{% for welcome in about %}
 							<div class="row no-gutters">
 								<div class="col-md-12">
+								{% if welcome.image %}
 									<img src="{{ welcome.image.url }}" width=100% ><br><br>
+								{% endif %}
 								</div>
 								<div class="col-md-12">
 									<h3>{{ welcome.title }}</h3>
 									<span class="welcome-preview"><p>{{ welcome.content|safe|truncatewords_html:"45" }}</p></span>
+									<!-- <div class="short-post-preview welcome-preview">
+										{# welcome.content|safe #}
+									</div> -->
 									<div class="grey-link">
 										<a href="{% url 'core-about' %}" class="welcome-preview"><u>Детальніше</u></a>
 									</div>
@@ -43,12 +48,19 @@
 						<div class=" welcome-panel"> <!-- p-1 -->
 						{% for welcome in about %}
 							<div class="row no-gutters">
+								{% if welcome.image %}
 								<div class="col-md-6 "> <!-- p-3 -->
 									<img src="{{ welcome.image.url }}" width=100% >
 								</div>
 								<div class="col-md-6 p-4"> <!-- p-3 -->
+								{% else %}
+								<div class="col-md-12 p-4"> <!-- p-3 -->
+								{% endif %}
 									<h3>{{ welcome.title }}</h3>
 									<span class="welcome-preview"><p>{{ welcome.content|safe|truncatewords_html:"45" }}</p></span>
+									<!-- <div class="short-post-preview welcome-preview">
+										{# welcome.content|safe #}
+									</div> -->
 									<div class="grey-link">
 										<a href="{% url 'core-about' %}" class="welcome-preview"><u>Детальніше</u></a>
 									</div>
@@ -71,7 +83,10 @@
 									<div class="col-lg-12 event-preview">
 										<span class="event-text"><p>{{ post.date_posted|date:"d F Y  G:i" }}</p></span>
 										{{ post.title }}
-										<span class="event-text"><p>{{ post.content|safe|truncatewords_html:"24" }}</p></span><p></p>
+										<span class="event-text"><p>{{ post.content|safe|truncatewords_html:"23" }}</p></span>
+										<!-- <div class="short-post-preview event-text">
+											{# post.content|safe #}
+										</div> -->
 										<a href="{% url 'event-detail' post.id %}" >
 											<button class="btn rounded-0 event-more-btn" >Детальніше</button>
 										</a>
@@ -123,6 +138,9 @@
 								<!-- <hr class="thick-yellow" align="left"> -->
 								<h4><span class="preview-link-highlight">{{ post.title }}</span></h4>	
 								<p class="mb-0">{{ post.content|safe|truncatewords_html:"50" }}</p>
+								<!-- <div class=" short-post-preview mb-0">
+									{# post.content|safe #}
+								</div> -->
 							</div>
 						</div>
 					</div>

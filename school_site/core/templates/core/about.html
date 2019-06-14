@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
 {% block content %}
+{% load custom_tags %}
 
 	<div class="row justify-content-center">
 		<div class="col-md-11">
-			{% for welcome in about %}
-				{% if welcome.post_type == "welcome" %}
+			{% for welcome in about_welcome %}
 				<div class="row mb-0">
 					<div class="col-md-12">
 						<h2 class="section-title" align="center">{{ welcome.title }}</h2>
@@ -34,40 +34,37 @@
 						</div>
 					{% endif %}
 				</div>
-				{% endif %}
 			{% endfor %}
 		</div>
 	</div>
 
 	<div class="row justify-content-center">
 		<div class="col-md-11">
-		{% for history in about %}
-			{% if history.post_type == "history" %}
-				<div class="row mt-0 mb-0">
-					<div class="col-md-12">
-						<h2  class="section-title" align="center" >{{ history.title }}</h2>
-					</div>
-					<div class="col-md-12 p-1 pt-3">
-						{% if history.image %}
-							<img src="{{ history.image.url }}" width="100%" class="pb-4">
-						{% endif %}
-						<p>{{ history.content|safe }}</p>
-						{% if history.about_files.all %}
-								<hr class="hr-yellow-download" align="left" >
-								{% for link in history.about_files.all %}
-									<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
-								{% endfor %}
-							{% endif %}
-					</div>
+		{% for info in about_info %}
+			<div class="row mt-0 mb-0">
+				<div class="col-md-12">
+					<h2 class="section-title" id="{{ info.title|conv_link }}" align="center" >{{ info.title }}</h2>
 				</div>
-			{% endif %}
+				<div class="col-md-12 p-1 pt-3">
+					{% if info.image %}
+						<img src="{{ info.image.url }}" width="100%" class="pb-4">
+					{% endif %}
+					<p>{{ info.content|safe }}</p>
+					{% if info.about_files.all %}
+							<hr class="hr-yellow-download" align="left" >
+							{% for link in info.about_files.all %}
+								<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
+							{% endfor %}
+						{% endif %}
+				</div>
+			</div>
 		{% endfor %}
 		</div>
 	</div>
 
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<h2 class="section-title" align="center">Наші вчителі</h2>
+			<h2 class="section-title" id="nashi-vchyteli" align="center">Наші вчителі</h2>
 		</div>
 		<div class="col-md-11">
 			<div class="row ">
@@ -115,6 +112,7 @@
 			</div>
 		</div> -->
 	</div>
+
 
 	<br>
 

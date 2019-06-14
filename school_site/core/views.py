@@ -12,14 +12,14 @@ from .models import (
 	Teacher,
 	Timetable,
 	Schedule,
+	Student,
 	Contact,
 	Gallery,
 	GalleryImage,
+	Achievement,
 	Background,
-	StudentItem,
 	)
 from .forms import ContactForm
-
 
 def home(request):
 	news_list = News.objects.all().order_by('-date_posted')
@@ -42,7 +42,7 @@ def home(request):
 		# 'events': None,
 		'about': About.objects.filter(post_type="welcome"),
 		'news': pNews,
-		'title': 'Home',
+		'title': 'Головна',
 		'changebg': True,
 		'background_home': background_home,
 	}
@@ -55,9 +55,14 @@ def about(request):
 	except:
 		background_about = None
 
+	# about = About.objects.all()
+
+	# anchor = quote_plus(title)
+
 	context = {
-		'title': 'About',
-		'about': About.objects.all(),
+		'title': 'Школа',
+		'about_welcome': About.objects.filter(post_type="welcome"),
+		'about_info': About.objects.filter(post_type="info"),
 		'teachers': Teacher.objects.all(),
 		'background_about': background_about,
 		# 'changebg': True,
@@ -66,7 +71,7 @@ def about(request):
 
 def teachers_management(request):
 	context = {
-		'title': 'Management',
+		'title': 'Вчителі',
 		'teachers': Teacher.objects.filter(teacher_type='management'),
 		'changebg': True,
 	}
@@ -74,7 +79,7 @@ def teachers_management(request):
 
 def teachers_primary(request):
 	context = {
-		'title': 'Primary',
+		'title': 'Вчителі',
 		'teachers': Teacher.objects.filter(teacher_type='primary'),
 		'changebg': True,
 	}
@@ -82,7 +87,7 @@ def teachers_primary(request):
 
 def teachers_secondary(request):
 	context = {
-		'title': 'Secondary',
+		'title': 'Вчителі',
 		'teachers': Teacher.objects.filter(teacher_type='secondary'),
 		'changebg': True,
 	}
@@ -100,7 +105,7 @@ def gallery(request):
 	page = request.GET.get('page')
 	pGallery = paginator.get_page(page)
 	context = {
-		'title': 'Gallery',
+		'title': 'Галерея',
 		'gallery': pGallery,
 		'background_gallery': background_gallery,
 		'changebg': True,
@@ -122,7 +127,7 @@ def schedule(request):
 	lessons_extra = Schedule.objects.filter(table_type='extra')
 
 	context = {
-		'title': 'Schedule',
+		'title': 'Розклад',
 		#'tables': HtmlScheduleTables,
 		'time_general_summer': time_general_summer,
 		'time_general_winter': time_general_winter,
@@ -142,11 +147,30 @@ def students(request):
 		background_students = None
 
 	context = {
-		'title': 'Students',
-		'student_items': StudentItem.objects.all(),
+		'title': 'Учням',
+		'student_articles': Student.objects.all(),
 		'background_students': background_students,
 	}
 	return render(request, 'core/students.html', context)
+
+def achievements(request):
+	background_list = Background.objects.filter(page='achievements')
+	try:
+		background_achievements = background_list[0].image
+	except:
+		background_achievements = None
+
+	achievement_list = Achievement.objects.all().order_by('-date_posted')
+	paginator = Paginator(achievement_list, 2)
+	page = request.GET.get('page')
+	pAchievements = paginator.get_page(page)
+
+	context = {
+		'title': 'Досягнення',
+		'achievements': pAchievements,
+		'background_achievements': background_achievements,
+	}
+	return render(request, 'core/achievements.html', context)
 
 def news(request):
 	background_list = Background.objects.filter(page='news')
@@ -161,7 +185,7 @@ def news(request):
 	pNews = paginator.get_page(page)
 
 	context = {
-		'title': 'News',
+		'title': 'Новини',
 		'events': Event.objects.all().order_by('-date_posted'),
 		# 'events': None,
 		'news': pNews,
@@ -189,7 +213,7 @@ def contacts(request):
 		form = ContactForm()
 
 	context = {
-		'title': 'Contacts',
+		'title': 'Контакти',
 		'form': form,
 		'info': Contact.objects.all(),
 		'background_contacts': True,
@@ -247,4 +271,17 @@ class gallery_detail(DetailView):
 		context = super().get_context_data(**kwargs)
 		context['title'] = self.title
 		# context['test'] = "BINGO"
+		return context
+
+class achievement_detail(DetailView):
+	model = Achievement
+
+	def get_object(self):
+		object = super(DetailView, self).get_object()
+		self.title = object.title
+		return object
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = self.title
 		return context

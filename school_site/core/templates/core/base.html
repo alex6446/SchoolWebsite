@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,42 +74,52 @@
 		      		<li class="dropdown" style="display: inline-flex !important; flex-wrap: wrap;">
 		        		<a class="nav-link" href="{% url 'core-about' %}" style="flex-basis: 30%;">Школа</a>
 		        		<a class="nav-link float-right dropdown-icon-fix" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" style="flex-basis: 70%;"> <i class="fas fa-chevron-down dropdown-responsive-icon"></i></a>
-		        		<ul class="dropdown-menu shadow" style="flex-basis: 100%;">
+		        		<ul class="dropdown-menu shadow rounded" style="flex-basis: 100%;">
+				      		{% for object in about_anchors %}
+				      		<li class="nav-item">
+				        		<a href="{% url 'core-about' %}#{{ object.title|conv_link }}">{{ object.title }}</a>
+				      		</li>
+				      		{% endfor %}
+				      		<li class="nav-item">
+				        		<a href="{% url 'core-about' %}#nashi-vchyteli">Вчителі</a>
+				      		</li>
 		        			<li class="nav-item">
-				        		<a class="" href="{% url 'core-gallery' %}">Галерея</a>
+				        		<a href="{% url 'core-achievements' %}">Досягнення</a>
 				      		</li>
-				      		<li class="nav-item">
-				        		<a class="" href="{% url 'core-gallery' %}">Історія нашої школи</a>
-				      		</li>
-				      		<li class="nav-item">
-				        		<a class="" href="{% url 'core-gallery' %}">Наші вчителі</a>
-				      		</li>
-				      		<li class="nav-item">
-				        		<a class="" href="{% url 'core-gallery' %}">Досягнення та перемоги</a>
+		        			<li class="nav-item">
+				        		<a href="{% url 'core-gallery' %}">Галерея</a>
 				      		</li>
 		        		</ul>
 		      		</li>
 		      		<li class="dropdown" style="display: inline-flex !important; flex-wrap: wrap;">
 		        		<a class="nav-link" href="{% url 'core-students' %}" style="flex-basis: 30%;">Учням</a>
 		        		<a class="nav-link float-right dropdown-icon-fix" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" style="flex-basis: 70%;"> <i class="fas fa-chevron-down dropdown-responsive-icon"></i></a>
-		        		<ul class="dropdown-menu shadow" style="flex-basis: 100%;">
+		        		<ul class="dropdown-menu shadow rounded" style="flex-basis: 100%;">
 		        			<li class="nav-item">
 				        		<a class="" href="{% url 'core-schedule' %}">Розклад</a>
 				      		</li>
+				     		{% for object in student_anchors %}
 				      		<li class="nav-item">
-				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ДПА</a>
+				        		<a href="{% url 'core-students' %}#{{ object.title|conv_link }}">{{ object.title }}</a>
 				      		</li>
-				      		<li class="nav-item">
-				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ЗНО</a>
-				      		</li>
+				      		{% endfor %}
 		        		</ul>
 		      		</li>
 			      	<!-- <li class="dropdown">
 			        	<a class="nav-link" data-toggle="dropdown" role="button"  aria-haspopup="false" aria-expanded="false" href="{% url 'core-students' %}">Учням</a>
 			      		<ul class="dropdown-menu shadow">
 			      			<li class="nav-item">
-					        	<a class="" href="{% url 'core-schedule' %}">Розкладlkzdcspexysdirjkb</a>
-					      	</li>
+				        		<a class="" href="{% url 'core-schedule' %}">Розклад</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ДПА</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-gallery' %}">Образотворчі завдання у нашій школі</a>
+				      		</li>
+				      		<li class="nav-item">
+				        		<a class="" href="{% url 'core-schedule' %}">Пілготовка до ЗНО</a>
+				      		</li>
 			      		</ul>
 			      	</li> -->
 			      	<li class="nav-item">
@@ -146,6 +158,10 @@
 	{% elif background_news %}
 		<div class="background-image">
 			<img src="{{ background_news.url }}">
+		</div>
+	{% elif background_achievements %}
+		<div class="background-image">
+			<img src="{{ background_achievements.url }}">
 		</div>
 	{% elif background_contacts %}
 		<div id="map"></div>
@@ -199,6 +215,7 @@
 			</li>
 		</ul>
 	</nav>-->
+	
 	<div class="container flex-fill" style="position: relative;">
 		{% if messages %}
 			{% for message in messages %}
@@ -247,7 +264,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="{% static 'core/image.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/dropdown-fix.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'core/dropdown-fix.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'core/scripts-jquery.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </wrapper>

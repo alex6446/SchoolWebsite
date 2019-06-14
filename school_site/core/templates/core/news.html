@@ -15,6 +15,9 @@
 							<span class="event-all-date">{{ post.date_posted|date:"d F Y  G:i" }}</span>
 							<h4 style="margin-top: 8px; margin-bottom: 3px;"><span class="preview-link-highlight">{{ post.title }}</span></h4>
 							{{ post.content|safe|truncatewords_html:"35" }}
+							<!-- <div class="short-post-preview">
+								{# post.content|safe #}
+							</div> -->
 						{% if not post == events.last %}
 							<hr class="light">
 						{% endif %}
@@ -27,7 +30,6 @@
 		</div>
 		<br>
 	{% endif %}
-
 
 	<div class="container-fluid ">
 	<div class="row  justify-content-center">
@@ -43,10 +45,14 @@
 							<img src="{{ post.image.url }}" width=100%><br>
 						</div>
 						<div class="col-md-7">
-							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
+							<span class="news-preview-date float-right" >{{ post.date_posted|date:"d.m.Y" }}</span>
 							<div class="pt-4 pr-4 pl-4 pb-3 news-content">
 								<h4><span class="preview-link-highlight">{{ post.title }}</span></h4>	
 								<p class="mb-0" style="color: #2F2E2E;">{{ post.content|safe|truncatewords_html:"50" }}</p>
+								
+								<!-- <div class="short-post-preview mb-0" style="color: #2F2E2E;">	
+									{# post.content|safe #}
+								</div> -->
 							</div>
 						</div>
 					</div>

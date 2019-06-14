@@ -26,7 +26,7 @@ SECRET_KEY = ')2%l9n1mr$8&=ji^4(--6s7_yvg+221=v(z1r*w-c%+)bvae8m'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '206920bd.ngrok.io',
+    '5bdab8b1.ngrok.io',
     'localhost'
 ]
 
@@ -71,6 +71,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'core.context_processors.menu',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -116,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ua'
+LANGUAGE_CODE = 'uk-ua'
 
 TIME_ZONE = 'Etc/GMT-3'
 
@@ -136,8 +137,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-#TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static/js/tinymce/tinymce.min.js")
-#TINYMCE_JS_URL = os.path.join(MEDIA_URL, "js/tinymce/tinymce.min.js")
+# TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT + 'js/tiny_mce')
+# TINYMCE_JS_URL = os.path.join(MEDIA_URL + 'js/tiny_mce/tiny_mce.js')
 #TINYMCE_COMPRESSOR = True
 
 TINYMCE_DEFAULT_CONFIG = {
@@ -168,15 +169,15 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
     'visual': True,
-    'fontsize_formats': "8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 28pt 32pt 36pt 42pt 48pt",
-    'forced_p_newlines': False,
-    'forced_br_newlines': True,
-    'forced_root_block': '',
+    'fontsize_formats': "8pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 28pt 32pt 36pt 42pt 48pt",
+    # 'forced_p_newlines': False,
+    # 'forced_br_newlines': True,
+    # 'forced_root_block': '',
     }
 
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.net'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'school2testing321@gmail.com'
 EMAIL_HOST_PASSWORD = 'testing321'
 EMAIL_PORT = 587

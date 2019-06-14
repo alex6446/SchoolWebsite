@@ -13,12 +13,12 @@ class News(models.Model):
 
 class About(models.Model):
 	welcome = 'welcome'
-	history = 'history'
+	info = 'info'
 	TYPES = (
 		(welcome, "welcome"),
-		(history, "history"),
+		(info, "info"),
 		)
-	post_type = models.CharField(max_length=25, choices=TYPES, default=welcome)
+	post_type = models.CharField(max_length=25, choices=TYPES, default=info)
 	title = models.CharField(max_length=300)
 	image = models.ImageField(default=None, upload_to='about_pics', blank=True)
 	content = models.TextField()
@@ -49,7 +49,7 @@ class Teacher(models.Model):
 	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos')
 	name = models.CharField(max_length=150)
 	rank = models.CharField(max_length=150)
-	description = models.TextField()
+	description = models.TextField(blank=True)
 
 	def __str__(self):
 		return self.name
@@ -83,14 +83,22 @@ class Schedule(models.Model):
 	def __str__(self):
 		return self.table_type
 
-class StudentItem(models.Model):
+class Student(models.Model):
 	title = models.CharField(max_length=300)
-	image = models.ImageField(default=None, upload_to='student_item_pics', blank=True)
+	image = models.ImageField(default=None, upload_to='student_pics', blank=True)
 	content = models.TextField()
 
 	def __str__(self):
 		return self.title
-		
+
+class Achievement(models.Model):
+	title = models.CharField(max_length=300)
+	image = models.ImageField(default=None, upload_to='achievement_pics', blank=True)
+	content = models.TextField()
+	date_posted = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.title	
 
 class Contact(models.Model):
 	title = models.CharField(max_length=300)
@@ -114,6 +122,7 @@ class Background(models.Model):
 	schedule = 'schedule'
 	students = 'students'
 	news = 'news'
+	achievements = 'achievements'
 	PAGES = (
 		(home, "home"),
 		(about, "about"),
@@ -121,6 +130,7 @@ class Background(models.Model):
 		(schedule, "schedule"),
 		(students, "students"),
 		(news, "news"),
+		(achievements, "achievements"),
 		)
 	page = models.CharField(max_length=25, choices=PAGES, default=home)
 	image = models.ImageField(upload_to="backgrounds", default=None)
@@ -153,8 +163,13 @@ class AttachedFileTeacher(models.Model):
 	teacher = models.ForeignKey(Teacher, related_name='teacher_files', on_delete=models.SET_NULL, null=True)
 	name = models.CharField(max_length=300)
 
-class AttachedFileStudentItem(models.Model):
+class AttachedFileStudent(models.Model):
 	file = models.FileField(upload_to="attached_files", blank=True)
-	student_item = models.ForeignKey(StudentItem, related_name='student_item_files', on_delete=models.SET_NULL, null=True)
+	student = models.ForeignKey(Student, related_name='student_files', on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=300)
+
+class AttachedFileAchievement(models.Model):
+	file = models.FileField(upload_to="attached_files", blank=True)
+	achievement = models.ForeignKey(Achievement, related_name='achievement_files', on_delete=models.SET_NULL, null=True)
 	name = models.CharField(max_length=300)
 

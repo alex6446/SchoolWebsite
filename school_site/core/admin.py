@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.conf import settings
 from django.db import models
 from tinymce.widgets import TinyMCE
+import os
 from .models import (
 	News,
 	About,
@@ -8,16 +10,18 @@ from .models import (
 	Teacher,
 	Timetable,
 	Schedule,
+	Student,
 	Contact,
 	Gallery,
 	GalleryImage,
+	Achievement,
 	Background,
-	StudentItem,
 	AttachedFileNews,
 	AttachedFileAbout,
 	AttachedFileEvent,
 	AttachedFileTeacher,
-	AttachedFileStudentItem,
+	AttachedFileStudent,
+	AttachedFileAchievement,
 	)
 
 
@@ -61,12 +65,19 @@ class AttachedFileTeacherInline(admin.TabularInline):
 class AttachedFileTeacherAdmin(CustomAdmin):
 	inlines = [ AttachedFileTeacherInline, ]
 
-class AttachedFileStudentItemInline(admin.TabularInline):
-	model = AttachedFileStudentItem
+class AttachedFileStudentInline(admin.TabularInline):
+	model = AttachedFileStudent
 	extra = 1
 
-class AttachedFileStudentItemAdmin(CustomAdmin):
-	inlines = [ AttachedFileStudentItemInline, ]
+class AttachedFileStudentAdmin(CustomAdmin):
+	inlines = [ AttachedFileStudentInline, ]
+
+class AttachedFileAchievementInline(admin.TabularInline):
+	model = AttachedFileAchievement
+	extra = 1
+
+class AttachedFileAchievementAdmin(CustomAdmin):
+	inlines = [ AttachedFileAchievementInline, ]
 
 
 
@@ -74,10 +85,11 @@ admin.site.register(News, AttachedFileNewsAdmin)
 admin.site.register(About, AttachedFileAboutAdmin)
 admin.site.register(Event, AttachedFileEventAdmin)
 admin.site.register(Teacher, AttachedFileTeacherAdmin)
-admin.site.register(StudentItem, AttachedFileStudentItemAdmin)
+admin.site.register(Student, AttachedFileStudentAdmin)
 admin.site.register(Timetable, CustomAdmin)
 admin.site.register(Schedule, CustomAdmin)
 admin.site.register(Contact, CustomAdmin)
 admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Achievement, AttachedFileAchievementAdmin)
 admin.site.register(Background)
 

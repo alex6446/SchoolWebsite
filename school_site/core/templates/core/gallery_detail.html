@@ -7,16 +7,7 @@
 	<div class="card-columns">
 		{% for picture in object.images.all %}
 		
-			<!-- <div class="col-md-3">
-				<div class="thumbnail rounded">
-					<a href="{{ picture.image.url }}" data-toggle="lightbox" data-gallery="gallery">
-						<img src="{{ picture.image.url }}" class="img-fluid rounded">
-					</a>
-				</div>
-			</div> -->
-			<!-- <div class="col-md-3"> -->
 				<div class="card shadow rounded-0 border-0 ">
-					<!-- <img class="card-img-top rounded" src="{{ picture.image.url }}"> -->
 					{% if picture.title %}
 					<a href="{{ picture.image.url }}" data-toggle="lightbox" data-gallery="gallery" data-footer="{{ picture.title }}">
 						<img src="{{ picture.image.url }}" class="card-img rounded-0" >
