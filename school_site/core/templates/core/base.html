@@ -218,10 +218,17 @@
 	
 	<div class="container flex-fill" style="position: relative;">
 		{% if messages %}
+			<br>
 			{% for message in messages %}
-				<div class="alert alert-{{ message.tags }}">
-					{{ message }}
-				</div>
+				{% if message.tags == 'error' %}
+					<div class="alert alert-danger">
+						{{ message }}
+					</div>
+				{% else %}
+					<div class="alert alert-{{ message.tags }}">
+						{{ message }}
+					</div>
+				{% endif %}
 			{% endfor %}
 		{% endif %}
 		{% block content %}{% endblock %}
@@ -229,7 +236,7 @@
 
 	<footer>
 		<div class="row justify-content-center">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4 social">
@@ -251,6 +258,10 @@
 			</div>
 			</div>
 		</div>
+		<!-- <div class="col-md-12 social">
+			<hr class="light">
+			<p class="footer-content text-center">Site development - Alex6446</p>
+		</div> -->
 		</div>
 	</footer>
 

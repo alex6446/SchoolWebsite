@@ -134,10 +134,10 @@
 						</div>
 						<div class="col-md-7">
 							<span class="news-preview-date float-right">{{ post.date_posted|date:"d.m.Y" }}</span>
-							<div class="pt-4 pr-4 pl-4 pb-3">
+							<div class="pt-4 pr-4 pl-4 ">
 								<!-- <hr class="thick-yellow" align="left"> -->
 								<h4><span class="preview-link-highlight">{{ post.title }}</span></h4>	
-								<p class="mb-0">{{ post.content|safe|truncatewords_html:"50" }}</p>
+								<span class="mb-0">{{ post.content|safe|truncatewords_html:"40" }}</span>
 								<!-- <div class=" short-post-preview mb-0">
 									{# post.content|safe #}
 								</div> -->

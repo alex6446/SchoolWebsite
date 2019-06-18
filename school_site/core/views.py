@@ -201,14 +201,25 @@ def contacts(request):
 			# send email
 			sender_name = form.cleaned_data['name']
 			sender_email = form.cleaned_data['email']
+			print(sender_email)
 
-			message = "{0} has sent you a message:\n\n{1}".format(sender_name, 
+			subject = "Сайт ЗОШ №2"
+			message = "{0}\n{1}\n\n{2}".format(
+				sender_name,
+				sender_email, 
 				form.cleaned_data['message'])
-			send_mail('New Enquiry', message, sender_email, 
-				[settings.EMAIL_HOST_USER])
+			send_mail(
+				subject, 
+				message, 
+				sender_email, 
+				[settings.EMAIL_HOST_USER], 
+				fail_silently=False,
+				)
 
-			messages.success(request, f'Message sent!')
+			messages.success(request, f'Повідомлення відправлено!')
 			return redirect('core-contacts')
+		else:
+			messages.error(request, f'Під час відправлення повідомлення виникла помилка.')
 	else:
 		form = ContactForm()
 

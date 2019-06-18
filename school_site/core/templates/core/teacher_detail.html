@@ -3,11 +3,11 @@
 
 	<br>
 	<div class="text-center">
-		<img src="{{ object.photo.url }}" style="max-width: 100%;">
-		<h2>{{ object.name }}</h2>
-		<p>{{ object.rank }}</p>
+		<img src="{{ object.photo.url }}" style="max-width: 40%;">
+		<h3 class="mt-1">{{ object.name }}</h3>
+		<p><b>• {{ object.rank }} •</b></p>
 	</div>
-	<p>{{ object.description }}</p>
+	<p>{{ object.description|safe }}</p>
 	{% if object.teacher_files.all %}
 		<hr class="hr-yellow-download" align="left" >
 		{% for link in object.teacher_files.all %}
