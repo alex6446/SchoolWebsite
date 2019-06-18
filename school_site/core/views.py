@@ -257,18 +257,18 @@ class event_detail(DetailView):
 		context['title'] = self.title
 		return context
 
-class teacher_detail(DetailView):
-	model = Teacher
+# class teacher_detail(DetailView):
+# 	model = Teacher
 
-	def get_object(self):
-		object = super(DetailView, self).get_object()
-		self.title = object.name
-		return object
+# 	def get_object(self):
+# 		object = super(DetailView, self).get_object()
+# 		self.title = object.name
+# 		return object
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['title'] = self.title
-		return context
+# 	def get_context_data(self, **kwargs):
+# 		context = super().get_context_data(**kwargs)
+# 		context['title'] = self.title
+# 		return context
 
 class gallery_detail(DetailView):
 	model = Gallery

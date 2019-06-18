@@ -26,7 +26,7 @@ SECRET_KEY = ')2%l9n1mr$8&=ji^4(--6s7_yvg+221=v(z1r*w-c%+)bvae8m'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bc8654bd.ngrok.io',
+    'ce8eadf2.ngrok.io',
     'localhost'
 ]
 
@@ -154,13 +154,11 @@ TINYMCE_DEFAULT_CONFIG = {
             table code lists fullscreen  insertdatetime  nonbreaking
              directionality searchreplace wordcount visualblocks
             visualchars code fullscreen autolink lists  charmap print  hr
-            anchor pagebreak paste
+            anchor pagebreak paste 
             ''',
     'toolbar1': '''
             bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | link image media | 
-            codesample | visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor | preview code fullscreen |
+            fontsizeselect  | forecolor backcolor | link image media | charmap hr | code preview fullscreen |
             ''',
     'toolbar2': '''
             alignleft alignright |
@@ -170,6 +168,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     'visual': True,
     'fontsize_formats': "8pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 28pt 32pt 36pt 42pt 48pt",
+    'paste_as_text': True,
+    # 'contextmenu': "paste",
     # 'forced_p_newlines': False,
     # 'forced_br_newlines': True,
     # 'forced_root_block': '',

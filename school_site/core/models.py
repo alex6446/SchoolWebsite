@@ -46,13 +46,10 @@ class Teacher(models.Model):
 		)
 
 	teacher_type = models.CharField(max_length=25, choices=TYPES, default=secondary)
-	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos')
-	name = models.CharField(max_length=150)
-	rank = models.CharField(max_length=150)
-	description = models.TextField(blank=True)
+	content = models.TextField(default=None)
 
 	def __str__(self):
-		return self.name
+		return self.teacher_type
 
 class Timetable(models.Model):
 	general_summer = 'general_summer'

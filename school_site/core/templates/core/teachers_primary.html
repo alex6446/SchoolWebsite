@@ -1,27 +1,18 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-<div class="row justify-content-center">
-		<div class="col-lg-12">
-			<h2 class="section-title" align="center">Вчителі початкової школи</h2>
-		</div>
-		<div class="col-lg-11">
-			<div class="row p-1">
-				{% for teacher in teachers %}
-					<div class="teacher-preview col-lg-4 p-2">
-						<a href="{% url 'teacher-detail' teacher.id %}">
-							<div class="card rounded-0 border-0 shadow bg-white">
-								<img class="card-img-top rounded-0" src="{{ teacher.photo.url }}">
-								<div class="card-body">
-									<h5>{{ teacher.name }}</h5>
-									<p class="mb-0">{{ teacher.rank }}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-</div>
+	<h2 class="section-title" align="center">Вчителі початкової школи</h2>
+	<br>
+	{% for post in teachers %}
+		<p>{{ post.content|safe }}</p>	
+	{% endfor %}
+	
+	{% if teachers.teacher_files.all %}
+		<hr class="hr-yellow-download" align="left" >
+		{% for link in teachers.teacher_files.all %}
+			<a href="{{ link.file.url }}" class="link-icon link-icon-text">{{ link.name }}</a> <br>
+		{% endfor %}
+	{% endif %}
+	<br>
 
 {% endblock content %}

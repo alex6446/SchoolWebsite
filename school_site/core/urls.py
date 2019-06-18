@@ -3,7 +3,7 @@ from . import views
 from .views import (
 	news_detail, 
 	event_detail,
-	teacher_detail,
+	# teacher_detail,
     gallery_detail,
     achievement_detail, 
 	#NewsListView,
@@ -24,7 +24,7 @@ urlpatterns = [
     path('contacts/', views.contacts, name='core-contacts'),
     path('post/<int:pk>/', news_detail.as_view(), name='news-detail'),
     path('event/<int:pk>/', event_detail.as_view(), name='event-detail'),
-    path('teacher/<int:pk>/', teacher_detail.as_view(), name='teacher-detail'),
+    # path('teacher/<int:pk>/', teacher_detail.as_view(), name='teacher-detail'),
     path('gallery/<int:pk>/', gallery_detail.as_view(), name='gallery-detail'),
     path('achievement/<int:pk>/', achievement_detail.as_view(), name='achievement-detail'),
 ]
